@@ -19,8 +19,6 @@ public class ventana_inicio_sesion extends AppCompatActivity {
      * Descripcion: Oyente asociado al boton Registro que inicializa la actividad para Registrarse
      *
      * @param view
-     *
-     *Guada esto es una prueba
      */
     public void oyente_inciar_registro(View view){
         Intent actividad_registro = new Intent(this, ventana_registro.class );
