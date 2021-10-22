@@ -1,8 +1,10 @@
-package com.example.lab_aplicacion_multimedia;
+package com.example.lab_aplicacion_multimedia.Presentacion;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.lab_aplicacion_multimedia.R;
 
 public class ventana_registro extends AppCompatActivity {
 

@@ -21,8 +21,8 @@
 
         <!-- activitys -->
 
-        <activity android:name=".ventana_registro"></activity>
-        <activity android:name=".ventana_inicio_sesion">
+        <activity android:name=".Presentacion.ventana_registro"></activity>
+        <activity android:name=".Presentacion.ventana_inicio_sesion">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

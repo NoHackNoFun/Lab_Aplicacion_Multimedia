@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ventana_registro"
+    tools:context="com.example.lab_aplicacion_multimedia.Presentacion.ventana_registro"
     android:background="@color/cardview_dark_background"
     android:focusableInTouchMode="true"
     android:gravity="center"
@@ -39,18 +39,29 @@
         ]]>
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/lbl_Titulo_Registro"
             android:layout_width="match_parent"
             android:layout_height="33dp"
-            android:text="TextView" />
+            android:gravity="center"
+            android:text="Comienza tus primeros pasos"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <Space
+            android:id="@+id/sp_registro_1"
+            android:layout_width="match_parent"
+            android:layout_height="26dp" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/img_Registro"
             android:layout_width="match_parent"
             android:layout_height="56dp"
+            android:foregroundGravity="center"
             app:srcCompat="@drawable/icono_perfil" />
 
         <Space
+            android:id="@+id/sp_registro_2"
             android:layout_width="match_parent"
             android:layout_height="37dp" />
 
@@ -59,7 +70,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/icono_usuario"
-            android:hint="   Nombre usuario"
+            android:drawablePadding="15dp"
+            android:hint="Nombre usuario"
             android:inputType="textPersonName"
             android:maxLines="1"
             android:textColorHighlight="#FF9800"
@@ -70,8 +82,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/icono_correo"
+            android:drawablePadding="15dp"
             android:ems="10"
-            android:hint="   Correo electrónico"
+            android:hint="Correo electrónico"
             android:inputType="textEmailAddress"
             android:textColorHighlight="#FF9800"
             android:textColorHint="#FFFFFF" />
@@ -81,8 +94,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/icono_contrasena"
+            android:drawablePadding="15dp"
             android:ems="10"
-            android:hint="   Contraseña"
+            android:hint="Contraseña"
             android:inputType="textPassword"
             android:textColorHighlight="#FF9800"
             android:textColorHint="#FFFFFF" />
@@ -92,77 +106,51 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/icono_contrasena"
+            android:drawablePadding="15dp"
             android:ems="10"
-            android:hint="   Confirmar contraseña"
+            android:hint="Confirmar contraseña"
             android:inputType="textPassword"
             android:textColorHighlight="#FF9800"
             android:textColorHint="#FFFFFF" />
 
         <EditText
+            android:id="@+id/txt_Telefono"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/icono_telefono"
+            android:drawablePadding="15dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
+            android:hint="Teléfono"
+            android:inputType="phone"
+            android:textColorHighlight="#FF9800"
+            android:textColorHint="#FFFFFF" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName7"
+            android:id="@+id/txt_Fecha_Nacimiento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/icono_calendario"
+            android:drawablePadding="15dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
+            android:hint="Fecha nacimiento"
+            android:inputType="date"
+            android:textColorHighlight="#FF9800"
+            android:textColorHint="#FFFFFF" />
 
         <Space
+            android:id="@+id/sp_registro_3"
             android:layout_width="match_parent"
             android:layout_height="25dp" />
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
+            android:id="@+id/btn_Registro"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:text="Button" /><![CDATA[
+            android:layout_gravity="center|center_horizontal"
+            android:backgroundTint="#000000"
+            android:text="Registrarse"
+            android:textColor="#FFFFFF" />
 
-
-
-
-
-
-
-                android:id="@+id/textInputEmail"
-                style="@style/parent"
-                android:layout_marginTop="@dimen/loginViewsMargin">
-
-
-                android:id="@+id/textInputMobile"
-                style="@style/parent"
-                android:layout_marginTop="@dimen/loginViewsMargin">
-
-
-
-
-                android:id="@+id/textInputPassword"
-                style="@style/parent"
-                android:layout_marginTop="@dimen/loginViewsMargin">
-
-
-
-
-                android:id="@+id/cirRegisterButton"
-                style="@style/loginButton"
-                app:spinning_bar_width="4dp"
-                app:spinning_bar_color="#FFF"
-                android:text="Register"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/loginViewsMargin"
-                app:initialCornerAngle="27dp"
-                app:spinning_bar_padding="6dp"/>
-
-
-
-
-
-        ]]>
     </LinearLayout>
 
 </RelativeLayout>
