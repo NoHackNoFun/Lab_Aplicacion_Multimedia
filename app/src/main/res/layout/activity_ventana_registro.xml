@@ -148,6 +148,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center|center_horizontal"
             android:backgroundTint="#000000"
+            android:onClick="OyenteRealizarRegistro"
             android:text="Registrarse"
             android:textColor="#FFFFFF" />
 

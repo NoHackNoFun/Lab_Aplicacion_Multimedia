@@ -6,9 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.lab_aplicacion_multimedia.Persistencia.UsuarioDAO;
 import com.example.lab_aplicacion_multimedia.R;
 
 public class ventana_inicio_sesion extends AppCompatActivity {
+
+    private UsuarioDAO gestor_usuario = new UsuarioDAO();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +26,10 @@ public class ventana_inicio_sesion extends AppCompatActivity {
      * @param view
      */
     public void oyente_inciar_registro(View view){
+
         Intent actividad_registro = new Intent(this, ventana_registro.class );
         startActivity(actividad_registro);
+
     }
 
 }
