@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.lab_aplicacion_multimedia">
-
     <!-- permission -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -18,13 +17,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lab_Aplicacion_Multimedia"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".Presentacion.ventana_aplicacion_principal"></activity>
         <!-- activitys -->
-
-        <activity android:name=".Presentacion.ventana_registro"></activity>
+        <activity android:name=".Presentacion.ventana_registro" />
         <activity android:name=".Presentacion.ventana_inicio_sesion">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

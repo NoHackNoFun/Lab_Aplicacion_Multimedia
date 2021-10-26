@@ -90,6 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:backgroundTint="#000000"
+                android:onClick="OyenteRealizarLogin"
                 android:text="Login"
                 android:textColor="#FFFFFF" />
 
@@ -114,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:backgroundTint="#000000"
-                android:onClick="oyente_inciar_registro"
+                android:onClick="OyenteIniciarRegistro"
                 android:text="Registro"
                 android:textColor="#FFFFFF" />
 

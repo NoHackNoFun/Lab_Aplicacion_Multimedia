@@ -50,6 +50,31 @@ public class Usuario {
 
     /**
      *
+     * Descripcion: Metodo que se comunica con el gestor para encontrar un dato
+     *
+     * @param context
+     * @param nombre_usuario
+     * @param parametro
+     * @return
+     */
+    public String buscarDatoUsuarioBBDD(Context context, String nombre_usuario, String parametro){
+        return gestor_usuario.buscarDatosUsuarioRegistrado(context, nombre_usuario, parametro);
+    }
+
+    /**
+     *
+     * Descripcion: Metodo que se comunica con el gestor para realizar la consulta de INSERT
+     *
+     * @param context
+     * @param usuario_app
+     * @param imagen
+     */
+    public void insertarDatosUsuarioBBDD(Context context, Usuario usuario_app, byte [] imagen){
+        gestor_usuario.insertarDatosTablaUsuario(context, usuario_app, imagen);
+    }
+
+    /**
+     *
      * @return nombre del usuario
      */
     public String getNombreUsario_pk(){
@@ -144,20 +169,4 @@ public class Usuario {
         this.foto_perfil = fpu;
     }
 
-    /**
-     *
-     * Descripcion: Metodo que se comunica con el gestor para encontrar un dato
-     *
-     * @param context
-     * @param nombre_usuario
-     * @param parametro
-     * @return
-     */
-    public String buscarDatoUsuarioBBDD(Context context, String nombre_usuario, String parametro){
-        return gestor_usuario.buscarDatosUsuarioRegistrado(context, nombre_usuario, parametro);
-    }
-
-    public void insertarDatosUsuarioBBDD(Context context, Usuario usuario_app, byte [] imagen){
-        gestor_usuario.insertarDatosTablaUsuario(context, usuario_app, imagen);
-    }
 }
