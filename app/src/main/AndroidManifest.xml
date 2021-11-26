@@ -20,6 +20,7 @@
         <activity android:name=".Presentacion.ventana_menu_principal"></activity>
         <!-- activitys -->
         <activity android:name=".Presentacion.ventana_registro" />
+        <activity android:name=".Presentacion.ventana_configuracion" />
         <activity
             android:name=".Presentacion.ventana_inicio_sesion"
             android:label="Lab_Aplicacion_Multimedia"

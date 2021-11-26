@@ -2,6 +2,7 @@ package com.example.lab_aplicacion_multimedia.Presentacion;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -30,6 +31,8 @@ public class fragment_perfil extends Fragment {
     private TextView telefono_usuario;
     private TextView fecha_nacimiento_usuario;
     private ImageView foto_perfil_usuario;
+
+    private Button btn_Configuracion_Avanzada;
 
     /**
      *
@@ -79,6 +82,7 @@ public class fragment_perfil extends Fragment {
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
         inicializarDatos(view);
         mostrarDatos();
+        oyentesBotones();
 
         return view;
     }
@@ -89,6 +93,8 @@ public class fragment_perfil extends Fragment {
      *
      */
     private void inicializarDatos(View view){
+
+        this.btn_Configuracion_Avanzada = view.findViewById(R.id.btnConfiguracionAvanzada);
 
         this.nombre_usuario = (TextView) view.findViewById(R.id.lblNombreUsuario);
         this.correo_usuario = (TextView) view.findViewById(R.id.CorreoPerfilTitulo);
@@ -109,5 +115,21 @@ public class fragment_perfil extends Fragment {
         this.telefono_usuario.setText("Telefono: "+this.usuario.getTelefono());
         this.fecha_nacimiento_usuario.setText("Fecha Nacimiento: "+this.usuario.getFechaNacimiento());
         this.foto_perfil_usuario.setImageBitmap(this.usuario.getFotoPerfil());
+    }
+
+    /**
+     *
+     * Descripcion: Metodo que contiene el oyente asociado al boton configuracion avanzada
+     *
+     */
+    private void oyentesBotones(){
+        btn_Configuracion_Avanzada.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent configuracion_avanzada = new Intent(getActivity(), ventana_configuracion.class);
+                startActivity(configuracion_avanzada);
+            }
+        });
     }
 }

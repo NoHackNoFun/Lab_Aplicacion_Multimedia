@@ -1,5 +1,7 @@
 package com.example.lab_aplicacion_multimedia.Presentacion;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.Menu;
@@ -143,16 +145,26 @@ public class ventana_menu_principal extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()){
-
             case R.id.informacion_app:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Acerca de...");
+                builder.setMessage("Aplicación creada por Carlos y Guadalupe");
+                builder.setPositiveButton("OK",null);
+                builder.create();
+                builder.show();
                 break;
 
             case R.id.cerrar_sesion:
+                Intent cerrar_sesion = new Intent(ventana_menu_principal.this,
+                        ventana_inicio_sesion.class);
+                startActivity(cerrar_sesion);
                 break;
 
             case R.id.action_configuracon:
+                Intent configuracion = new Intent(ventana_menu_principal.this,
+                        ventana_configuracion.class);
+                startActivity(configuracion);
                 break;
         }
         return super.onOptionsItemSelected(item);
