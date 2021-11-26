@@ -15,12 +15,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Lab_Aplicacion_Multimedia"
+        android:theme="@style/Theme.Lab_Aplicacion_Multimedia.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Presentacion.ventana_aplicacion_principal"></activity>
+        <activity android:name=".Presentacion.ventana_menu_principal"></activity>
         <!-- activitys -->
         <activity android:name=".Presentacion.ventana_registro" />
-        <activity android:name=".Presentacion.ventana_inicio_sesion">
+        <activity
+            android:name=".Presentacion.ventana_inicio_sesion"
+            android:label="Lab_Aplicacion_Multimedia"
+            android:theme="@style/Theme.Lab_Aplicacion_Multimedia.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

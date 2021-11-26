@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/inicio"
+        android:icon="@drawable/icono_casa"
+        android:title="Inicio"
+        android:enabled="true"
+        />
+
+    <item
+        android:id="@+id/imagenes_menu"
+        android:icon="@drawable/icono_imagen"
+        android:title="Imagenes"
+        android:enabled="true"
+        />
+
+    <item
+        android:id="@+id/audio_menu"
+        android:icon="@drawable/icono_audio"
+        android:title="Audio"
+        android:enabled="true"
+        />
+    <item
+        android:id="@+id/video_menu"
+        android:icon="@drawable/icono_video"
+        android:title="Video"
+        android:enabled="true"
+        />
+    <item
+        android:id="@+id/perfil"
+        android:icon="@drawable/icono_perfil"
+        android:title="Perfil"
+        android:enabled="true"
+        />
+
+</menu>

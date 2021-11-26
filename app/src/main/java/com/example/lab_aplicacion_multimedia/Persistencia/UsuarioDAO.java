@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import com.example.lab_aplicacion_multimedia.Constantes.Constantes;
@@ -162,5 +164,35 @@ public class UsuarioDAO {
         db.close();
 
         return dato_buscado;
+    }
+
+    public Bitmap buscarImagen(Context context, String nombre_usuario, String parametro){
+
+        String [] clave_primaria = new String[1];
+        String [] parametro_buscado = new String [1];
+
+        clave_primaria [0] = nombre_usuario;
+        parametro_buscado [0] = parametro;
+
+        byte [] image = null;
+        SQLiteDatabase db = this.getConnRead(context);
+
+        try {
+
+            Cursor cursor = db.query(Constantes.NOMBRE_TABLA_USARIO_BBDD, parametro_buscado,
+                    Constantes.CAMPO_USUARIO_NOMBRE_USUARIO+"=?",clave_primaria, null,null,null);
+
+            cursor.moveToFirst();
+            image = cursor.getBlob(0);
+            cursor.close();
+
+
+        } catch (Exception e) {
+            Log.d("Debug_Excepcion", "Se ha producido un error al realizar la consulta");
+        }
+
+        db.close();
+
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
     }
 }

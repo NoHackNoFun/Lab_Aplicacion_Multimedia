@@ -28,24 +28,24 @@
             android:padding="20dp">
 
             <RelativeLayout
-                android:layout_width="346dp"
-                android:layout_height="74dp">
+                android:layout_width="343dp"
+                android:layout_height="112dp">
 
                 <ImageView
                     android:id="@+id/img_Logo_App"
-                    android:layout_width="160dp"
-                    android:layout_height="70dp"
+                    android:layout_width="171dp"
+                    android:layout_height="108dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="93dp"
-                    android:src="@drawable/ic_login_hero" />
+                    android:src="@drawable/icono_app" />
             </RelativeLayout>
 
             <Space
                 android:id="@+id/sp_login_1"
-                android:layout_width="345dp"
-                android:layout_height="31dp" />
+                android:layout_width="342dp"
+                android:layout_height="35dp" />
 
             <EditText
                 android:id="@+id/txt_Nombre_Usuario_Login"

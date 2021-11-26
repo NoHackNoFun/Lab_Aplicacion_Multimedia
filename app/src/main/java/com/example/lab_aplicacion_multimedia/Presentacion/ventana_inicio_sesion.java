@@ -63,7 +63,7 @@ public class ventana_inicio_sesion extends AppCompatActivity {
             if(verificar_password == 0 && verificar_usuario == 0){
 
                 Intent actividad_app_principal = new Intent(this,
-                        ventana_aplicacion_principal.class);
+                        ventana_menu_principal.class);
                 actividad_app_principal.putExtra("nombre_usuario_registrado",
                         txt_nombre_usuario_login.getText().toString());
                 startActivity(actividad_app_principal);

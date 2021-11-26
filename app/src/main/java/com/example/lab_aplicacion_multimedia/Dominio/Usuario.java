@@ -63,6 +63,19 @@ public class Usuario {
 
     /**
      *
+     * Descripcion: Metodo que se comunica con el gestor para encontrar la foto de un usuario
+     *
+     * @param context
+     * @param nombre_usuario
+     * @param parametro
+     * @return
+     */
+    public Bitmap buscarImagenUsarioBBDD(Context context, String nombre_usuario, String parametro){
+        return gestor_usuario.buscarImagen(context, nombre_usuario, parametro);
+    }
+
+    /**
+     *
      * Descripcion: Metodo que se comunica con el gestor para realizar la consulta de INSERT
      *
      * @param context
