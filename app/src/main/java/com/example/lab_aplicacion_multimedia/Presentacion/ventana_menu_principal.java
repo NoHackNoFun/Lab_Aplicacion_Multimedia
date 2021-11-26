@@ -1,7 +1,5 @@
 package com.example.lab_aplicacion_multimedia.Presentacion;
 
-import android.app.AlertDialog;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,21 +11,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.lab_aplicacion_multimedia.Dominio.Usuario;
-import com.example.lab_aplicacion_multimedia.Persistencia.UsuarioDAO;
 import com.example.lab_aplicacion_multimedia.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ventana_menu_principal extends AppCompatActivity {
 
+    //Variable global con el nombre del usuario que esta actualmente en el sistema
     public static String usuario_sesion_iniciada;
 
     private BottomNavigationView navigation;
     private String nombre_usuario_registrado;
     private Toast notification;
     private Toolbar toolbar;
-    private UsuarioDAO gestor_perfil = new UsuarioDAO();
     private Usuario usuario_sistema;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +33,6 @@ public class ventana_menu_principal extends AppCompatActivity {
         inicializarPasoDatos();
         inicializarDatosNavegacion();
         openInitialFragment();
-
     }
 
     /**
@@ -47,7 +42,6 @@ public class ventana_menu_principal extends AppCompatActivity {
      *
      */
     private void inicializarPasoDatos(){
-
         this.toolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
 
@@ -55,10 +49,9 @@ public class ventana_menu_principal extends AppCompatActivity {
         this.nombre_usuario_registrado = bundle.getString("nombre_usuario_registrado");
         usuario_sesion_iniciada = bundle.getString("nombre_usuario_registrado");
 
-        notification = Toast.makeText(this, "Bienvenido a Music Player BBDD Multimedia "
+        notification = Toast.makeText(this, "Bienvenido al reproductor Multimedia "
                 + this.nombre_usuario_registrado, Toast.LENGTH_LONG);
         notification.show();
-
     }
 
     /**
@@ -79,12 +72,8 @@ public class ventana_menu_principal extends AppCompatActivity {
      *
      */
     private void openInitialFragment() {
-
-        usuario_sistema = inicializarDatosPerfil();
-
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main_fragment, new fragment_inicio()).commit();
-
     }
 
     /**
@@ -109,33 +98,14 @@ public class ventana_menu_principal extends AppCompatActivity {
                 case R.id.video_menu:
                     break;
                 case R.id.perfil:
-
                     usuario_sistema = inicializarDatosPerfil();
-                    Bitmap imagen_perfil = inicializarImagenPerfil();
-
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.inicio_fragment, new fragment_perfil(usuario_sistema)).commit();
-
                     break;
             }
             return false;
         }
     };
-
-    /**
-     *
-     * Descripcion: Obtener los datos tipo BLOB de la base de datos
-     *
-     * @return bitmap
-     */
-    private Bitmap inicializarImagenPerfil(){
-
-        Bitmap bitmap = gestor_perfil.buscarImagen(ventana_menu_principal.this, nombre_usuario_registrado,
-                "ImagenPerfil");
-
-        return bitmap;
-
-    }
 
     /**
      *
@@ -145,31 +115,28 @@ public class ventana_menu_principal extends AppCompatActivity {
      */
     private Usuario inicializarDatosPerfil(){
 
-        Usuario usuario;
-
+        Usuario usuario = new Usuario();
         String nombre_usuario = nombre_usuario_registrado;
 
-        String nombre = gestor_perfil.buscarDatosUsuarioRegistrado(ventana_menu_principal.this,
-                nombre_usuario_registrado, "Nombre");
-        String password = gestor_perfil.buscarDatosUsuarioRegistrado(ventana_menu_principal.this,
+        String password = usuario.buscarDatoUsuarioBBDD(ventana_menu_principal.this,
                 nombre_usuario_registrado,"Password");
-        String telefono = gestor_perfil.buscarDatosUsuarioRegistrado(ventana_menu_principal.this,
+        String telefono = usuario.buscarDatoUsuarioBBDD(ventana_menu_principal.this,
                 nombre_usuario_registrado,"Telefono");
-        String correo_electronico = gestor_perfil.buscarDatosUsuarioRegistrado(ventana_menu_principal.this,
+        String correo_electronico = usuario.buscarDatoUsuarioBBDD(ventana_menu_principal.this,
                 nombre_usuario_registrado,"CorreoElectronico");
-        String fecha_nacimiento = gestor_perfil.buscarDatosUsuarioRegistrado(ventana_menu_principal.this,
+        String fecha_nacimiento = usuario.buscarDatoUsuarioBBDD(ventana_menu_principal.this,
                 nombre_usuario_registrado,"FechaNacimiento");
-        Bitmap foto_perfil = gestor_perfil.buscarImagen(ventana_menu_principal.this,
+        Bitmap foto_perfil = usuario.buscarImagenUsarioBBDD(ventana_menu_principal.this,
                 nombre_usuario_registrado, "ImagenPerfil");
 
-        usuario = new Usuario(nombre_usuario, password, telefono, correo_electronico, fecha_nacimiento, foto_perfil);
+        usuario = new Usuario(nombre_usuario, password, telefono, correo_electronico,
+                fecha_nacimiento, foto_perfil);
 
         return usuario;
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -180,19 +147,14 @@ public class ventana_menu_principal extends AppCompatActivity {
         switch (item.getItemId()){
 
             case R.id.informacion_app:
-
                 break;
 
             case R.id.cerrar_sesion:
-
                 break;
 
             case R.id.action_configuracon:
-
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 }

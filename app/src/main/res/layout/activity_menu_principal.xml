@@ -16,7 +16,7 @@
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="#28282B"
             app:popupTheme="@style/Theme.Lab_Aplicacion_Multimedia.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -24,8 +24,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF"
-        android:backgroundTint="#FFFFFF">
+        android:background="@color/cardview_dark_background"
+        android:backgroundTint="@color/cardview_dark_background">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
