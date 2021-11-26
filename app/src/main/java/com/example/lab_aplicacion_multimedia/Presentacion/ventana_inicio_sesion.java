@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.lab_aplicacion_multimedia.Dominio.Usuario;
+import com.example.lab_aplicacion_multimedia.Persistencia.FotoDao;
 import com.example.lab_aplicacion_multimedia.Persistencia.UsuarioDAO;
 import com.example.lab_aplicacion_multimedia.R;
 

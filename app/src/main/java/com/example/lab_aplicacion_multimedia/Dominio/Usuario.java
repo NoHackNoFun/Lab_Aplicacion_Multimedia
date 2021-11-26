@@ -36,7 +36,6 @@ public class Usuario {
         this.telefono = telefono;
         this.fecha_nacimiento = fecha_nacimiento;
         this.foto_perfil = foto_perfil;
-
     }
 
     /**
@@ -45,7 +44,6 @@ public class Usuario {
      *
      */
     public Usuario(){
-
     }
 
     /**

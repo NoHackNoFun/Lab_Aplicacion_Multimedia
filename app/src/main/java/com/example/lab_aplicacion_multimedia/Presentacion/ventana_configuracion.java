@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,8 +25,11 @@ import com.example.lab_aplicacion_multimedia.Dominio.Usuario;
 import com.example.lab_aplicacion_multimedia.R;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 public class ventana_configuracion extends AppCompatActivity {
 
@@ -116,6 +120,10 @@ public class ventana_configuracion extends AppCompatActivity {
 
                     mostrarNotificacion("Nueva foto de perfil");
                     ivNuevaFotoPerfil.setImageResource(R.mipmap.ic_launcher);
+
+                    createDirectoryAndSaveFile(usuario_actual.buscarImagenUsarioBBDD(ventana_configuracion.this,
+                            nombre_usuario_registrado, "ImagenPerfil"), "hola.jpg");
+
                 }
                 catch (Exception e){
                     e.printStackTrace();
@@ -302,6 +310,29 @@ public class ventana_configuracion extends AppCompatActivity {
      */
     private void borrarDatosAsociados(){
 
+    }
+
+    private void createDirectoryAndSaveFile(Bitmap imageToSave, String fileName) {
+
+        File direct = new File(Environment.getExternalStorageDirectory() + "/DirName");
+
+        if (!direct.exists()) {
+            File wallpaperDirectory = new File("/sdcard/DirName/");
+            wallpaperDirectory.mkdirs();
+        }
+
+        File file = new File("/sdcard/DirName/", "hola.jpeg");
+        if (file.exists()) {
+            file.delete();
+        }
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            imageToSave.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

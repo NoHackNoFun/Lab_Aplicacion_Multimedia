@@ -59,7 +59,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icono_perfil" />
+        app:srcCompat="@drawable/icono_app" />
 
     <EditText
         android:id="@+id/txtCambiar_email"

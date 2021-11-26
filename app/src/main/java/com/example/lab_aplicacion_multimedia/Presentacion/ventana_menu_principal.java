@@ -62,10 +62,8 @@ public class ventana_menu_principal extends AppCompatActivity {
      *
      */
     private void inicializarDatosNavegacion(){
-
         navigation = findViewById(R.id.bottomNavigationView);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
     }
 
     /**
@@ -93,8 +91,13 @@ public class ventana_menu_principal extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.main_fragment, new fragment_inicio()).commit();
                     break;
+
                 case R.id.imagenes_menu:
+                    Intent ventana_imagenes = new Intent(ventana_menu_principal.this,
+                            ventana_foto.class);
+                    startActivity(ventana_imagenes);
                     break;
+
                 case R.id.audio_menu:
                     break;
                 case R.id.video_menu:
