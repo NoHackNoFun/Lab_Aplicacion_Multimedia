@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/cardview_dark_background"
     android:layout_height="match_parent">
@@ -9,8 +10,8 @@
     <Button
         android:id="@+id/btnBorrarCuenta"
         android:layout_width="135dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="30dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="45dp"
         android:layout_marginEnd="50dp"
         android:backgroundTint="#000000"
         android:text="Eliminar"
@@ -20,16 +21,16 @@
     <Button
         android:id="@+id/btnModificarDatos"
         android:layout_width="135dp"
-        android:layout_height="50dp"
+        android:layout_height="55dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="45dp"
         android:backgroundTint="#000000"
         android:text="Modificar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtCambiar_FechaNacimiento" />
 
     <Button
-        android:id="@+id/btnAdd"
+        android:id="@+id/btnAniadirFoto"
         android:layout_width="140dp"
         android:layout_height="55dp"
         android:layout_marginTop="30dp"
@@ -40,13 +41,13 @@
         app:layout_constraintTop_toBottomOf="@+id/imageViewConfiguracion" />
 
     <Button
-        android:id="@+id/btnCambiarFoto"
+        android:id="@+id/btnBuscarFoto"
         android:layout_width="140dp"
         android:layout_height="55dp"
         android:layout_marginStart="45dp"
         android:layout_marginTop="30dp"
         android:backgroundTint="#000000"
-        android:text="Cambiar Foto"
+        android:text="Subir Foto"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewConfiguracion" />
 
@@ -61,32 +62,11 @@
         app:srcCompat="@drawable/icono_perfil" />
 
     <EditText
-        android:id="@+id/txtCambiar_nombre"
-        style="@style/Widget.AppCompat.EditText"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="25dp"
-        android:layout_weight="2"
-        android:backgroundTintMode="add"
-        android:drawableLeft="@drawable/icono_usuario"
-        android:drawablePadding="8dp"
-        android:ems="10"
-        android:hint="Nombre usuario"
-        android:textColorHighlight="#FF9800"
-        android:textColorHint="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAdd" />
-
-    <EditText
         android:id="@+id/txtCambiar_email"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="45dp"
         android:layout_marginEnd="25dp"
         android:layout_weight="2"
         android:drawableLeft="@drawable/icono_correo"
@@ -97,7 +77,7 @@
         android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCambiar_nombre" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAniadirFoto" />
 
     <EditText
         android:id="@+id/txtCambiar_Password"

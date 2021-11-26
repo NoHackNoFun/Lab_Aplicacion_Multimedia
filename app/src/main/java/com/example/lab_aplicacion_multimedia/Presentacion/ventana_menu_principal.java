@@ -164,6 +164,7 @@ public class ventana_menu_principal extends AppCompatActivity {
             case R.id.action_configuracon:
                 Intent configuracion = new Intent(ventana_menu_principal.this,
                         ventana_configuracion.class);
+                configuracion.putExtra("nombre_usuario_registrado", this.nombre_usuario_registrado);
                 startActivity(configuracion);
                 break;
         }

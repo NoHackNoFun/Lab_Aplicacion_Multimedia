@@ -127,8 +127,9 @@ public class fragment_perfil extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent configuracion_avanzada = new Intent(getActivity(), ventana_configuracion.class);
-                startActivity(configuracion_avanzada);
+                Intent configuracion = new Intent(getActivity(), ventana_configuracion.class);
+                configuracion.putExtra("nombre_usuario_registrado", usuario.getNombreUsario_pk());
+                startActivity(configuracion);
             }
         });
     }

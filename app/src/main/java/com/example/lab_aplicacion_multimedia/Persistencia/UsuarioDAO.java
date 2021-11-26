@@ -26,11 +26,9 @@ public class UsuarioDAO {
 
         ConexionSQLiteHelper conexion = new ConexionSQLiteHelper(context,
                 "dbProyectoMultimedia", null, 4);
-
         SQLiteDatabase db = conexion.getWritableDatabase();
 
         return db;
-
     }
 
     /**
@@ -46,11 +44,9 @@ public class UsuarioDAO {
 
         ConexionSQLiteHelper conexion = new ConexionSQLiteHelper(context,
                 "dbProyectoMultimedia", null, 4);
-
         SQLiteDatabase db = conexion.getReadableDatabase();
 
         return db;
-
     }
 
     /**
@@ -63,7 +59,6 @@ public class UsuarioDAO {
 
         SQLiteDatabase db = this.getConnWrite(context);
         db.execSQL(Constantes.CREAR_TABLA_USUARIO);
-
     }
 
     /**
@@ -123,7 +118,6 @@ public class UsuarioDAO {
         statement.executeInsert();
 
         db.close();
-
     }
 
     /**
@@ -194,5 +188,79 @@ public class UsuarioDAO {
         db.close();
 
         return BitmapFactory.decodeByteArray(image, 0, image.length);
+    }
+
+    /**
+     *
+     * Descripcion: Metodo que actualiza la imagen de un usuario en el sistema
+     *
+     * @param context
+     * @param nombre_usuario
+     * @param image
+     */
+    public void updateDataImagen(Context context, String nombre_usuario, byte [] image) {
+
+        SQLiteDatabase db = this.getConnWrite(context);
+        String sql = "UPDATE Usuario SET ImagenPerfil = ? WHERE NombreUsuario='"+nombre_usuario+"'";
+        SQLiteStatement statement = db.compileStatement(sql);
+        statement.bindBlob(1, image);
+        statement.execute();
+
+        db.close();
+    }
+
+    /**
+     *
+     * Descripcion: Metodo que permite modificar los campos de la tabla Usuario en la base de datos
+     *
+     * @param context ventana
+     * @param nombre_usuario nombre del usuario del que se quiere modificar el parametro (clave primaria)
+     * @param nombre_campo_tabla nombre del campo de la tabla que se quiere modificar
+     * @param parametro_nuevo nuevo valor para ese campo
+     * @return resultado_consulta comprueba si la consulta se ha realizado correctamente
+     */
+    public int updateParametroUsuario(Context context, String nombre_usuario, String nombre_campo_tabla, String parametro_nuevo){
+
+        int resultado_consulta = -1;
+        SQLiteDatabase db = this.getConnWrite(context);
+        String update_usuario_sql = "UPDATE "+Constantes.NOMBRE_TABLA_USARIO_BBDD+" SET "+nombre_campo_tabla+" = '"+parametro_nuevo+"' WHERE "+Constantes.CAMPO_USUARIO_NOMBRE_USUARIO+"= '"+nombre_usuario+"'";
+
+        try {
+
+            db.execSQL(update_usuario_sql);
+            resultado_consulta = 1;
+
+        } catch (Exception e) {
+            Log.d("Debug_Excepcion", "Se ha producido un error al realizar la consulta");
+        }
+
+        db.close();
+        return resultado_consulta;
+    }
+
+    /**
+     *
+     * Descripcion: Metodo que permite eliminar un usuario de la base de datos
+     *
+     * @param context ventana
+     * @param nombre_usuario clave primaria
+     * @return resultado_consulta comprueba si la consulta se ha realizado correctamente
+     */
+    public int eliminarUsuario(Context context, String nombre_usuario){
+
+        int resultado_consulta = -1;
+        SQLiteDatabase db = this.getConnWrite(context);
+        String eliminar_usuario_sql = "DELETE FROM "+Constantes.NOMBRE_TABLA_USARIO_BBDD+" WHERE NombreUsuario='"+nombre_usuario+"'";
+
+        try {
+
+            db.execSQL(eliminar_usuario_sql);
+            resultado_consulta = 1;
+        } catch (Exception e) {
+            Log.d("Debug_Excepcion", "Se ha producido un error al realizar la consulta");
+        }
+
+        db.close();
+        return resultado_consulta;
     }
 }
