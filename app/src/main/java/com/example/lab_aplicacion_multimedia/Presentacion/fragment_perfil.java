@@ -2,7 +2,6 @@ package com.example.lab_aplicacion_multimedia.Presentacion;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,26 +15,30 @@ import android.widget.TextView;
 import com.example.lab_aplicacion_multimedia.Dominio.Usuario;
 import com.example.lab_aplicacion_multimedia.R;
 
-
 /**
+ *
+ * Descripcion: Clase fragmento que extiende a Fragmento
  *
  */
 public class fragment_perfil extends Fragment {
 
+    //Usuario que se encuentra altualmente en el sistema
     private Usuario usuario;
 
-    private TextView lblNombre_usuario_perfil_BBDD;
-    private TextView nombrePerfilTitulo;
-    private TextView CorreoPerfilTitulo;
-    private TextView TelefonoPerfilTitulo;
-    private TextView FechaNacimientoPerfilTitulo;
-    private ImageView image_foto_perfil;
+    private TextView nombre_usuario;
+    private TextView correo_usuario;
+    private TextView telefono_usuario;
+    private TextView fecha_nacimiento_usuario;
+    private ImageView foto_perfil_usuario;
 
+    /**
+     *
+     * @param usuario
+     */
     public fragment_perfil(Usuario usuario) {
-
         this.usuario = usuario;
-
     }
+
     /**
      * Called when a fragment is first attached to its context.
      * {@link #onCreate(Bundle)} will be called after this.
@@ -74,32 +77,37 @@ public class fragment_perfil extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
-
         inicializarDatos(view);
         mostrarDatos();
 
         return view;
-
     }
 
     /**
      *
-     * Descripcion: Metodo que permite inicializar los datos de la ventana reproductor
+     * Descripcion: Metodo que permite inicializar los datos del fragmento perfil
      *
      */
     private void inicializarDatos(View view){
 
-
+        this.nombre_usuario = (TextView) view.findViewById(R.id.lblNombreUsuario);
+        this.correo_usuario = (TextView) view.findViewById(R.id.CorreoPerfilTitulo);
+        this.telefono_usuario = (TextView) view.findViewById(R.id.TelefonoPerfilTitulo);
+        this.fecha_nacimiento_usuario = (TextView) view.findViewById(R.id.FechaNacimientoPerfilTitulo);
+        this.foto_perfil_usuario = (ImageView) view.findViewById(R.id.imageView_foto_perfil);
     }
 
     /**
      *
-     * Descripcion: Metodo que permite mostart los datos despues de hacer las consultas a la base de datos
+     * Descripcion: Metodo que permite mostart los datos despues de hacer las consultas
      *
      */
     private void mostrarDatos(){
 
-
+        this.nombre_usuario.setText(this.usuario.getNombreUsario_pk());
+        this.correo_usuario.setText("Correo: "+this.usuario.getCorreoElectronico());
+        this.telefono_usuario.setText("Telefono: "+this.usuario.getTelefono());
+        this.fecha_nacimiento_usuario.setText("Fecha Nacimiento: "+this.usuario.getFechaNacimiento());
+        this.foto_perfil_usuario.setImageBitmap(this.usuario.getFotoPerfil());
     }
-
 }
