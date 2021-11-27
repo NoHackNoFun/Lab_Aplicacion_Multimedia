@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +25,7 @@ public class ventana_foto extends AppCompatActivity {
     private RecyclerView lstFotos;
     private AdaptadorListaFoto adaptador_fotos;
     private Foto gestor_fotos = new Foto();
-    private Toolbar toolbar;
+    private Toast notificacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,10 @@ public class ventana_foto extends AppCompatActivity {
                         break;
 
                     case R.id.ImagenComprimir:
+
+                        Bitmap foto_comprimir = fotos.get(posicion).getFoto();
+                        gestor_fotos.guardarComprimirFoto(foto_comprimir);
+                        mostrarNotificacion("La foto ha sido comprimida a JPEG con exito");
                         break;
                 }
             }
@@ -114,5 +119,18 @@ public class ventana_foto extends AppCompatActivity {
      */
     private int obtenerNumeroFotos(){
         return this.gestor_fotos.getNumeroTotalFotosBBDD(ventana_foto.this);
+    }
+
+    /**
+     *
+     * Descripcion: Metodo que notifica al usuario de una accion
+     *
+     * @param cadena con el mensaje personaliszado dependiendo de la situacion
+     */
+    private void mostrarNotificacion(String cadena){
+
+        this.notificacion = Toast.makeText(ventana_foto.this, cadena,
+                Toast.LENGTH_LONG);
+        this.notificacion.show();
     }
 }

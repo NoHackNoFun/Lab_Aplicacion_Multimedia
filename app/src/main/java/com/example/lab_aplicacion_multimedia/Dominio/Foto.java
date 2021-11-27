@@ -2,7 +2,17 @@ package com.example.lab_aplicacion_multimedia.Dominio;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Build;
+import android.os.Environment;
+
+import androidx.annotation.RequiresApi;
+
 import com.example.lab_aplicacion_multimedia.Persistencia.FotoDao;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.security.SecureRandom;
+import java.util.Base64;
 
 public class Foto {
 
@@ -11,6 +21,7 @@ public class Foto {
     private String descripcion_imagen;
     private Bitmap bitmap_imagen;
 
+    private static final SecureRandom secureRandom = new SecureRandom();
     private FotoDao gestor_fotos = new FotoDao();
 
     /**
@@ -77,6 +88,73 @@ public class Foto {
      */
     public Bitmap buscarImagenFotoBBDD(Context context, String id_foto, String parametro){
         return gestor_fotos.buscarImagenFoto(context, id_foto, parametro);
+    }
+
+    /**
+     *
+     * @param imageToSave
+     */
+    public void guardarComprimirFoto(Bitmap imageToSave) {
+
+        File direct = new File(Environment.getExternalStorageDirectory() + "/ImagenesComprimidas");
+        String fileName = generateToken();
+
+        if (!direct.exists()) {
+            File wallpaperDirectory = new File("/sdcard/ImagenesComprimidas/");
+            wallpaperDirectory.mkdirs();
+        }
+
+        File file = new File("/sdcard/ImagenesComprimidas/", fileName);
+        if (file.exists()) {
+            file.delete();
+        }
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+
+            imageToSave = reduceBitmapSize(imageToSave);
+            imageToSave.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     *
+     * Descripcion: 640x480
+     *
+     * @param bitmap
+     * @return
+     */
+    public static Bitmap reduceBitmapSize(Bitmap bitmap) {
+        double ratioSquare;
+        int bitmapHeight;
+        int bitmapWidth;
+        int max_size = 307200;
+
+        bitmapHeight = bitmap.getHeight();
+        bitmapWidth = bitmap.getWidth();
+        ratioSquare = (bitmapHeight * bitmapWidth) / max_size;
+
+        if (ratioSquare <= 1)
+            return bitmap;
+
+        double ratio = Math.sqrt(ratioSquare);
+        int requiredHeight = (int) Math.round(bitmapHeight / ratio);
+        int requiredWidth = (int) Math.round(bitmapWidth / ratio);
+
+        return Bitmap.createScaledBitmap(bitmap, requiredWidth, requiredHeight, true);
+    }
+
+    /**
+     *
+     * @return
+     */
+    private String generateToken(){
+        long longToken = Math.abs(secureRandom.nextLong());
+        String randomToken = Long.toString(longToken, 8);
+        return randomToken+".jpeg";
     }
 
     /**
