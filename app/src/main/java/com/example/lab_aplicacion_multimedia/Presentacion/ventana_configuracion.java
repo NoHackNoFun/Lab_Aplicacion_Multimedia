@@ -21,6 +21,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.example.lab_aplicacion_multimedia.Dominio.FotoFavorita;
 import com.example.lab_aplicacion_multimedia.Dominio.Usuario;
 import com.example.lab_aplicacion_multimedia.R;
 
@@ -33,8 +34,11 @@ import java.io.OutputStream;
 
 public class ventana_configuracion extends AppCompatActivity {
 
-    private String nombre_usuario_registrado;
     private Usuario usuario_actual = new Usuario();
+    private FotoFavorita gestor_fotolist = new FotoFavorita();
+
+    private String nombre_usuario_registrado;
+    private String[] id_fotos;
 
     private EditText txtNuevoEmail;
     private EditText txtNuevoPassword;
@@ -120,10 +124,6 @@ public class ventana_configuracion extends AppCompatActivity {
 
                     mostrarNotificacion("Nueva foto de perfil");
                     ivNuevaFotoPerfil.setImageResource(R.mipmap.ic_launcher);
-
-                    createDirectoryAndSaveFile(usuario_actual.buscarImagenUsarioBBDD(ventana_configuracion.this,
-                            nombre_usuario_registrado, "ImagenPerfil"), "hola.jpg");
-
                 }
                 catch (Exception e){
                     e.printStackTrace();
@@ -304,36 +304,51 @@ public class ventana_configuracion extends AppCompatActivity {
 
     /**
      *
-     * Descripcion: Metodo que obtiene las canciones asociadas al usaurio que quiere eliminar su
-     * cuenta en el sistema y borra dichas canciones
+     * Descripcion: Metodo que para borrar los datos de un usuario en el sistema
      *
      */
     private void borrarDatosAsociados(){
 
+        borrarDatosFotosAsociados();
     }
 
-    private void createDirectoryAndSaveFile(Bitmap imageToSave, String fileName) {
+    /**
+     *
+     * Descripcion: Metodo que obtiene las fotos asociadas al usaurio que quiere eliminar su
+     * cuenta en el sistema y borra dichas fotos
+     *
+     */
+    private void borrarDatosFotosAsociados(){
 
-        File direct = new File(Environment.getExternalStorageDirectory() + "/DirName");
+        int numero_fotos_usuario = obtenerNumeroFotosUsuario();
 
-        if (!direct.exists()) {
-            File wallpaperDirectory = new File("/sdcard/DirName/");
-            wallpaperDirectory.mkdirs();
+        if(numero_fotos_usuario != 0) {
+
+            this.id_fotos = gestor_fotolist.getListaFotosFavoritas(ventana_configuracion.this,
+                    ventana_menu_principal.usuario_sesion_iniciada, numero_fotos_usuario);
+
+            for(int i = 0; i < this.id_fotos.length; i++) {
+
+                gestor_fotolist.eliminarFotoFavoritosBBDD(ventana_configuracion.this,
+                        ventana_menu_principal.usuario_sesion_iniciada, id_fotos[i]);
+            }
         }
-
-        File file = new File("/sdcard/DirName/", "hola.jpeg");
-        if (file.exists()) {
-            file.delete();
-        }
-        try {
-            FileOutputStream out = new FileOutputStream(file);
-            imageToSave.compress(Bitmap.CompressFormat.JPEG, 100, out);
-            out.flush();
-            out.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+        else{
+            mostrarNotificacion("Ninguna Foto asociada que eliminar");
         }
     }
 
+    /**
+     *
+     * Descripcion: Metodo que permite obtener el numero total de fotos favoritas de un
+     * determinado usuario
+     *
+     * @return entero con la cantidad de fotos favoritas dado un nombre de usuario
+     */
+    private int obtenerNumeroFotosUsuario(){
+
+        return this.gestor_fotolist.getNumeroFotosUsuarioBBDD(ventana_configuracion.this,
+                ventana_menu_principal.usuario_sesion_iniciada);
+    }
 }
 
