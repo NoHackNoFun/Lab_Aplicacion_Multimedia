@@ -79,6 +79,16 @@ public class FotoFavorita {
 
     /**
      *
+     * @param context
+     * @param nombre_usuario
+     * @param id_foto
+     */
+    public void eliminarFotoFavoritosBBDD(Context context, String nombre_usuario, String id_foto){
+        gestor_fotos_favoritas.eliminarFotoFavoritos(context, nombre_usuario, id_foto);
+    }
+
+    /**
+     *
      * @return identificador de la playlist en la aplicacion
      */
     public String getIdFotosFavoritas(){

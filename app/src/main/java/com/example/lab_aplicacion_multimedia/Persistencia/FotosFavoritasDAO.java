@@ -167,13 +167,13 @@ public class FotosFavoritasDAO {
      * @param nombre_usuario
      * @param id_foto
      */
-    public void eliminarCancionFavoritos(Context context, String nombre_usuario, String id_foto){
+    public void eliminarFotoFavoritos(Context context, String nombre_usuario, String id_foto){
 
         int resultado_consulta = -1;
         SQLiteDatabase db = this.getConnWrite(context);
 
         String eliminar_usuario_sql = "DELETE FROM "+ Constantes.NOMBRE_TABLA_FOTOS_FAVORITAS_BBDD+
-                " WHERE FotoFavoritaNombreUsuari='"+nombre_usuario+"' AND FotoFavoritaIdFoto='"+id_foto+"'";
+                " WHERE FotoFavoritaNombreUsuario='"+nombre_usuario+"' AND FotoFavoritaIdFoto='"+id_foto+"'";
 
         try {
 

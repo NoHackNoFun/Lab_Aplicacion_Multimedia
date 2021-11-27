@@ -1,5 +1,6 @@
 package com.example.lab_aplicacion_multimedia.Presentacion;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -38,7 +39,7 @@ public class fragment_inicio extends Fragment {
 
         oyentesBotonesFragmentInicio();
 
-        return inflater.inflate(R.layout.fragment_inicio, container, false);
+        return view;
     }
 
     /**
@@ -56,7 +57,8 @@ public class fragment_inicio extends Fragment {
         this.btn_mis_fotos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent ventana_fotolist = new Intent(getActivity(), ventana_foto_favoritas.class);
+                startActivity(ventana_fotolist);
             }
         });
     }
