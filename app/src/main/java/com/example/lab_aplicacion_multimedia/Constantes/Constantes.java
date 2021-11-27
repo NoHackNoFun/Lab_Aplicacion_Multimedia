@@ -26,6 +26,13 @@ public class Constantes {
     public static final String CAMPO_FOTO_DESCRIPCION = "DescripcionFoto";
     public static final String CAMPO_FOTO_IMAGEN = "ImagenFoto";
 
+    //Constantes campos tabla FOTOS_FAVORITAS (3)
+
+    public static final String NOMBRE_TABLA_FOTOS_FAVORITAS_BBDD = "FotosFavoritas";
+    public static final String CAMPO_FOTO_FAVORITA_ID = "IdFotoFavorita";
+    public static final String CAMPO_FOTO_FAVORITA_NOMBRE_USUARIO ="FotoFavoritaNombreUsuario";
+    public static final String CAMPO_FOTO_FAVORITA_ID_FOTO = "FotoFavoritaIdFoto";
+
     //Constantes TABLAS
 
     public static final String CREAR_TABLA_USUARIO =
@@ -37,4 +44,8 @@ public class Constantes {
             "CREATE TABLE "+NOMBRE_TABLA_FOTO_BBDD+" ("+CAMPO_FOTO_ID+" TEXT, "+CAMPO_FOTO_NOMBRE+
                     " TEXT, "+CAMPO_FOTO_DESCRIPCION+" TEXT, "+CAMPO_FOTO_IMAGEN+" BLOB)";
 
+    public static final String CREAR_TABLA_FOTO_FAVORITA =
+            "CREATE TABLE "+NOMBRE_TABLA_FOTOS_FAVORITAS_BBDD+" ("+CAMPO_FOTO_FAVORITA_ID+
+                    " TEXT, "+CAMPO_FOTO_FAVORITA_NOMBRE_USUARIO+
+                    " TEXT, "+CAMPO_FOTO_FAVORITA_ID_FOTO+" TEXT)";
 }

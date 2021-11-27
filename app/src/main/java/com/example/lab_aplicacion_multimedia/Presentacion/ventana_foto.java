@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -14,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lab_aplicacion_multimedia.Adaptadores.AdaptadorListaFoto;
 import com.example.lab_aplicacion_multimedia.Dominio.Foto;
+import com.example.lab_aplicacion_multimedia.Dominio.FotoFavorita;
 import com.example.lab_aplicacion_multimedia.Interfaz.OnItemSelectedListener;
 import com.example.lab_aplicacion_multimedia.R;
 import java.util.ArrayList;
@@ -24,8 +24,10 @@ public class ventana_foto extends AppCompatActivity {
     private String [] id_fotos;
     private RecyclerView lstFotos;
     private AdaptadorListaFoto adaptador_fotos;
-    private Foto gestor_fotos = new Foto();
     private Toast notificacion;
+
+    private Foto gestor_fotos = new Foto();
+    private FotoFavorita gestor_fotos_favoritas = new FotoFavorita();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,18 @@ public class ventana_foto extends AppCompatActivity {
             public void onMenuContextualFoto(int posicion, MenuItem menu) {
                 switch (menu.getItemId()){
                     case R.id.ImagenFavorita:
+
+                        int comprobar_foto = gestor_fotos_favoritas.buscarFotoRegistradaBBDD(ventana_foto.this,
+                                fotos.get(posicion).getIdImagen(), ventana_menu_principal.usuario_sesion_iniciada);
+
+                        if(comprobar_foto == 0){
+                            gestor_fotos_favoritas.insertarDatosTablaFotosFavoritasBBDD(ventana_foto.this,
+                                    ventana_menu_principal.usuario_sesion_iniciada, fotos.get(posicion).getIdImagen());
+                            mostrarNotificacion("Nueva Foto en lista personal");
+                        }
+                        else if(comprobar_foto > 0){
+                            mostrarNotificacion("Esta Foto ya esta en su lista");
+                        }
                         break;
 
                     case R.id.ImagenComprimir:

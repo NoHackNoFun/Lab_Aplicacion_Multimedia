@@ -9,7 +9,7 @@ import android.util.Log;
 
 import com.example.lab_aplicacion_multimedia.Constantes.Constantes;
 
-public class FotoDao {
+public class FotoDAO {
 
     /**
      *

@@ -2,17 +2,13 @@ package com.example.lab_aplicacion_multimedia.Dominio;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Environment;
 
-import androidx.annotation.RequiresApi;
-
-import com.example.lab_aplicacion_multimedia.Persistencia.FotoDao;
+import com.example.lab_aplicacion_multimedia.Persistencia.FotoDAO;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.security.SecureRandom;
-import java.util.Base64;
 
 public class Foto {
 
@@ -22,7 +18,7 @@ public class Foto {
     private Bitmap bitmap_imagen;
 
     private static final SecureRandom secureRandom = new SecureRandom();
-    private FotoDao gestor_fotos = new FotoDao();
+    private FotoDAO gestor_fotos = new FotoDAO();
 
     /**
      *

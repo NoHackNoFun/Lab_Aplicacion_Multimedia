@@ -34,6 +34,7 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
 
         db.execSQL(Constantes.CREAR_TABLA_USUARIO);;
         db.execSQL(Constantes.CREAR_TABLA_FOTO);;
+        db.execSQL(Constantes.CREAR_TABLA_FOTO_FAVORITA);;
     }
     /**
      *
@@ -50,6 +51,7 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
 
         db.execSQL("DROP TABLE IF EXISTS Usuario");
         db.execSQL("DROP TABLE IF EXISTS Foto");
+        db.execSQL("DROP TABLE IF EXISTS FotosFavoritas");
         onCreate(db);
     }
 }
