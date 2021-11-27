@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/inicio_fragment"
     android:layout_width="wrap_content"
@@ -7,20 +8,116 @@
     tools:context=".Presentacion.fragment_inicio">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="413dp"
+        android:layout_height="670dp">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Incio" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        <Button
+            android:id="@+id/btnFotosFavList"
+            android:layout_width="125dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="45dp"
+            android:backgroundTint="#000000"
+            android:text="Mis Fotos"
+            app:layout_constraintStart_toEndOf="@+id/ivFotoFav"
+            app:layout_constraintTop_toBottomOf="@+id/lblTituloImagenesFav" />
+
+        <Button
+            android:id="@+id/btnAudioFavList"
+            android:layout_width="125dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#000000"
+            android:text="Mis Audios"
+            app:layout_constraintStart_toEndOf="@+id/ivAudioFav"
+            app:layout_constraintTop_toBottomOf="@+id/lblTituloAudioFav" />
+
+        <Button
+            android:id="@+id/btnVideoFavList"
+            android:layout_width="125dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="45dp"
+            android:backgroundTint="#000000"
+            android:text="Mis Videos"
+            app:layout_constraintStart_toEndOf="@+id/ivVideoFav"
+            app:layout_constraintTop_toBottomOf="@+id/lblTituloVideoFav" />
+
+        <TextView
+            android:id="@+id/lblTituloImagenesFav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="70dp"
+            android:text="Fotos Favoritas"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/lblTituloAudioFav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:text="Audios Favoritos"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivFotoFav"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/lblTituloVideoFav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:text="Videos Favoritos"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivAudioFav"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/ivFotoFav"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/icono_imagen_grande"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblTituloImagenesFav" />
+
+        <ImageView
+            android:id="@+id/ivAudioFav"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/icono_audio_grande"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblTituloAudioFav" />
+
+        <ImageView
+            android:id="@+id/ivVideoFav"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/icono_video_grande"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblTituloVideoFav" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </FrameLayout>
