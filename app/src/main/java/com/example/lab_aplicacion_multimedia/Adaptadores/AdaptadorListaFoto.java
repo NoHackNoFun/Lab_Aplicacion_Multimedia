@@ -13,7 +13,6 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.lab_aplicacion_multimedia.Dominio.Foto;
 import com.example.lab_aplicacion_multimedia.Interfaz.OnItemSelectedListener;
-import com.example.lab_aplicacion_multimedia.Presentacion.ventana_detalles_foto;
 import com.example.lab_aplicacion_multimedia.R;
 import java.util.ArrayList;
 
@@ -91,27 +90,9 @@ public class AdaptadorListaFoto extends RecyclerView.Adapter<AdaptadorListaFoto.
     @Override
     public void onBindViewHolder(AdaptadorListaFoto.ViewHolder holder, int position) {
 
-        holder.lblNombreFoto.setText(" "+fotos.get(position).getNombreImagen());
-        holder.lblDescripcionFoto.setText(" "+fotos.get(position).getDescripcionImagen());
+        holder.lblNombreFoto.setText(fotos.get(position).getNombreImagen());
+        holder.lblDescripcionFoto.setText(fotos.get(position).getDescripcionImagen());
         holder.imgFoto.setImageBitmap(fotos.get(position).getFoto());
-
-        /**
-         *
-         * Descripcion: Oyente asociado al pulsar un item de la lista
-         *
-         */
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(holder.lblNombreFoto.getText().toString() != "No disponible"){
-
-                    Intent informacion_imagen = new Intent(holder.itemView.getContext(), ventana_detalles_foto.class);
-                    informacion_imagen.putExtra("identificador_foto", fotos.get(position).getIdImagen());
-                    holder.itemView.getContext().startActivity(informacion_imagen);
-                }
-            }
-        });
     }
 
     /**

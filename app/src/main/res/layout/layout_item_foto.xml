@@ -2,16 +2,16 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/cardview_dark_background"
     tools:context=".Presentacion.ventana_foto">
 
     <ImageView
         android:id="@+id/imgFoto"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:minWidth="50dp"
         android:minHeight="50dp"
         app:srcCompat="@drawable/ic_launcher_background" />
@@ -25,17 +25,22 @@
             android:id="@+id/lblNombreFoto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:text="Nombre_foto"
-            android:textSize="24sp"
             android:textColor="#FFFFFF"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/lblDescripcionFoto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
             android:text="Descripcion_Foto"
+            android:textColor="#FFFFFF"
             android:textSize="18sp" />
     </LinearLayout>
 </LinearLayout>
