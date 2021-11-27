@@ -9,7 +9,7 @@ import android.view.MenuItem;
  */
 public interface OnItemSelectedListener {
 
-    void onArtistaSeleccionado(int posicion);
-    void onMenuContextualCancion(int posicion, MenuItem menu);
+    void onFotoSeleccionado(int posicion);
+    void onMenuContextualFoto(int posicion, MenuItem menu);
 
 }

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/cardview_dark_background"
     tools:context=".Presentacion.ventana_foto">
 
     <ImageView
@@ -25,13 +26,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nombre_foto"
-            android:textSize="20sp"
+            android:textSize="24sp"
+            android:textColor="#FFFFFF"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/lblDescripcionFoto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:text="Descripcion_Foto"
             android:textSize="18sp" />
     </LinearLayout>

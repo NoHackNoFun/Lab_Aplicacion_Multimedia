@@ -2,6 +2,8 @@ package com.example.lab_aplicacion_multimedia.Presentacion;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lab_aplicacion_multimedia.Adaptadores.AdaptadorListaFoto;
 import com.example.lab_aplicacion_multimedia.Dominio.Foto;
+import com.example.lab_aplicacion_multimedia.Interfaz.OnItemSelectedListener;
 import com.example.lab_aplicacion_multimedia.R;
 import java.util.ArrayList;
 
@@ -48,6 +51,24 @@ public class ventana_foto extends AppCompatActivity {
         this.adaptador_fotos = new AdaptadorListaFoto(fotos);
         this.lstFotos.setAdapter(adaptador_fotos);
         this.lstFotos.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+
+        this.adaptador_fotos.setItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onFotoSeleccionado(int posicion) {
+                Log.d("Verificacion", fotos.get(posicion).getNombreImagen());
+            }
+
+            @Override
+            public void onMenuContextualFoto(int posicion, MenuItem menu) {
+                switch (menu.getItemId()){
+                    case R.id.ImagenFavorita:
+                        break;
+
+                    case R.id.ImagenComprimir:
+                        break;
+                }
+            }
+        });
     }
 
     /**
@@ -80,8 +101,8 @@ public class ventana_foto extends AppCompatActivity {
             }
         }
         else{
-            fotos.add(new Foto("No disponible", "No disponible",
-                    "No disponible", null));
+            fotos.add(new Foto(" No disponible", " No disponible",
+                    " No disponible", null));
         }
     }
 
