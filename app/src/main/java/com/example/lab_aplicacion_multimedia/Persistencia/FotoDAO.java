@@ -49,7 +49,7 @@ public class FotoDAO {
 
     /**
      *
-     * Descripcion: Metodo que permite crear la tabla Artista
+     * Descripcion: Metodo que permite crear la tabla Foto
      *
      * @param context
      */

@@ -13,6 +13,7 @@ import android.widget.EditText;
 
 import com.example.lab_aplicacion_multimedia.Dominio.Usuario;
 import com.example.lab_aplicacion_multimedia.Persistencia.FotosFavoritasDAO;
+import com.example.lab_aplicacion_multimedia.Persistencia.VideoDAO;
 import com.example.lab_aplicacion_multimedia.R;
 
 public class ventana_inicio_sesion extends AppCompatActivity {

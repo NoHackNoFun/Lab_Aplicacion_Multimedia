@@ -101,8 +101,13 @@ public class ventana_menu_principal extends AppCompatActivity {
 
                 case R.id.audio_menu:
                     break;
+
                 case R.id.video_menu:
+                    Intent ventana_video = new Intent(ventana_menu_principal.this,
+                            ventana_reproduccion_video.class);
+                    startActivity(ventana_video);
                     break;
+
                 case R.id.perfil:
                     usuario_sistema = inicializarDatosPerfil();
                     getSupportFragmentManager().beginTransaction()
