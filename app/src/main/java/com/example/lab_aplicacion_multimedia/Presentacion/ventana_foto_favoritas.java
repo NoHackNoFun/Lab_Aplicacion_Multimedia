@@ -1,10 +1,7 @@
 package com.example.lab_aplicacion_multimedia.Presentacion;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.lab_aplicacion_multimedia.Adaptadores.AdaptadorListaFotoFav;
 import com.example.lab_aplicacion_multimedia.Dominio.Foto;
 import com.example.lab_aplicacion_multimedia.Dominio.FotoFavorita;
-import com.example.lab_aplicacion_multimedia.Interfaz.OnItemSelectedListener;
 import com.example.lab_aplicacion_multimedia.R;
 
 import java.util.ArrayList;
@@ -29,7 +25,6 @@ public class ventana_foto_favoritas extends AppCompatActivity {
     private RecyclerView lstFotoPlayList;
     private AdaptadorListaFotoFav adaptador_fotolist;
     private Toast notification;
-    private Intent intent;
 
     private Foto gestor_foto = new Foto();
     private FotoFavorita gestor_foto_list = new FotoFavorita();

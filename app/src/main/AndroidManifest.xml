@@ -17,8 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lab_Aplicacion_Multimedia.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Presentacion.ventana_video"></activity>
-        <activity android:name=".Presentacion.ventana_reproduccion_video"></activity>
+        <activity android:name=".Presentacion.ventana_video_favoritos"></activity>
+        <activity android:name=".Presentacion.ventana_video" />
+        <activity android:name=".Presentacion.ventana_reproduccion_video" />
         <activity android:name=".Presentacion.ventana_menu_principal" /> <!-- activitys -->
         <activity android:name=".Presentacion.ventana_registro" />
         <activity android:name=".Presentacion.ventana_configuracion" />

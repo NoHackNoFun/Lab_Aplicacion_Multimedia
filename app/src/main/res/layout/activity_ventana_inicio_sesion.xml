@@ -90,7 +90,7 @@
                 android:layout_gravity="center_horizontal"
                 android:backgroundTint="#000000"
                 android:onClick="OyenteRealizarLogin"
-                android:text="Login"
+                android:text="Iniciar"
                 android:textColor="#FFFFFF" />
 
             <Space

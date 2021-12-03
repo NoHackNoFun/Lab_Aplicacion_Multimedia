@@ -23,6 +23,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.example.lab_aplicacion_multimedia.Dominio.FotoFavorita;
 import com.example.lab_aplicacion_multimedia.Dominio.Usuario;
+import com.example.lab_aplicacion_multimedia.Dominio.VideoFavorito;
 import com.example.lab_aplicacion_multimedia.R;
 
 import java.io.ByteArrayOutputStream;
@@ -36,9 +37,11 @@ public class ventana_configuracion extends AppCompatActivity {
 
     private Usuario usuario_actual = new Usuario();
     private FotoFavorita gestor_fotolist = new FotoFavorita();
+    private VideoFavorito gestor_videolist = new VideoFavorito();
 
     private String nombre_usuario_registrado;
     private String[] id_fotos;
+    private String[] id_videos;
 
     private EditText txtNuevoEmail;
     private EditText txtNuevoPassword;
@@ -309,6 +312,7 @@ public class ventana_configuracion extends AppCompatActivity {
      */
     private void borrarDatosAsociados(){
         borrarDatosFotosAsociados();
+        borrarDatosVideosAsociados();
     }
 
     /**
@@ -333,7 +337,37 @@ public class ventana_configuracion extends AppCompatActivity {
             }
         }
         else{
-            mostrarNotificacion("Ninguna Foto asociada que eliminar");
+            mostrarNotificacion("Ninguna FOTO asociada que eliminar");
+        }
+    }
+
+    /**
+     *
+     * Descripcion: Metodo que obtiene los videos asociados al usaurio que quiere eliminar su
+     * cuenta en el sistema y borra dichos videos
+     *
+     */
+    private void borrarDatosVideosAsociados(){
+
+        int numero_videos_usuario = obtenerNumeroVideosUsuario();
+
+        if(numero_videos_usuario != 0) {
+
+            this.id_videos = gestor_videolist.getListaVideosFavoritosBBDD(
+                    ventana_configuracion.this,
+                    ventana_menu_principal.usuario_sesion_iniciada,
+                    numero_videos_usuario);
+
+            for(int i = 0; i < this.id_videos.length; i++) {
+
+                gestor_videolist.eliminarVideoFavoritosBBDD(
+                        ventana_configuracion.this,
+                        ventana_menu_principal.usuario_sesion_iniciada,
+                        id_videos[i]);
+            }
+        }
+        else{
+            mostrarNotificacion("Ningun VIDEO asociada que eliminar");
         }
     }
 
@@ -347,6 +381,19 @@ public class ventana_configuracion extends AppCompatActivity {
     private int obtenerNumeroFotosUsuario(){
 
         return this.gestor_fotolist.getNumeroFotosUsuarioBBDD(ventana_configuracion.this,
+                ventana_menu_principal.usuario_sesion_iniciada);
+    }
+
+    /**
+     *
+     * Descripcion: Metodo que permite obtener el numero total de videos favoritos de un
+     * determinado usuario
+     *
+     * @return entero con la cantidad de videos dado un nombre de usuario
+     */
+    private int obtenerNumeroVideosUsuario(){
+
+        return this.gestor_videolist.getNumeroVideosUsuarioBBDD(ventana_configuracion.this,
                 ventana_menu_principal.usuario_sesion_iniciada);
     }
 }

@@ -18,36 +18,36 @@
         android:fitsSystemWindows="true">
 
         <VideoView
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
             android:id="@+id/video_view_original"
-            />
+            android:layout_width="match_parent"
+            android:layout_height="360dp" />
 
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/lbl_video_nombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/lbl_video_nombre"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:layout_marginTop="20dp"
         android:textColor="@color/white"
-        android:layout_marginTop="8dp"/>
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/lbl_video_descripcion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/lbl_video_descripcion"
-        android:textSize="18sp"
+        android:layout_marginTop="15dp"
         android:textColor="@color/white"
-        android:layout_marginTop="8dp"/>
+        android:textSize="18sp" />
 
     <Button
+        android:id="@+id/btn_comprimir_video"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_comprimir_video"
+        android:layout_marginTop="30dp"
         android:backgroundTint="#000000"
-        android:textColor="#FFFFFF"
-        android:text="Comprimir"/>
+        android:text="Comprimir"
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>

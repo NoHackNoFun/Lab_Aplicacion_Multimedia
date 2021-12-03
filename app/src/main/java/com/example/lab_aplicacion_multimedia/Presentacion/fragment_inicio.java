@@ -35,7 +35,7 @@ public class fragment_inicio extends Fragment {
 
         this.btn_mis_fotos = view.findViewById(R.id.btnFotosFavList);
         //this.btn_mis_audios = view.findViewById(R.id.btnAudioFavList);
-        //this.btn_mis_videos = view.findViewById(R.id.btnVideoFavList;
+        this.btn_mis_videos = view.findViewById(R.id.btnVideoFavList);
 
         oyentesBotonesFragmentInicio();
 
@@ -59,6 +59,19 @@ public class fragment_inicio extends Fragment {
             public void onClick(View v) {
                 Intent ventana_fotolist = new Intent(getActivity(), ventana_foto_favoritas.class);
                 startActivity(ventana_fotolist);
+            }
+        });
+
+        /**
+         *
+         * Descripcion: Oyente boton Mis Videos
+         *
+         */
+        this.btn_mis_videos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ventana_videolist = new Intent(getActivity(), ventana_video_favoritos.class);
+                startActivity(ventana_videolist);
             }
         });
     }

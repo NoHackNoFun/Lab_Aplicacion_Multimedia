@@ -81,7 +81,7 @@ public class FotosFavoritasDAO {
 
     /**
      *
-     * Descripcion: Metodo que permite insertar una cancion en nuestra playlist
+     * Descripcion: Metodo que permite insertar una foto en nuestra playlist
      *
      * @param context
      * @param id_usuario
@@ -173,12 +173,12 @@ public class FotosFavoritasDAO {
         int resultado_consulta = -1;
         SQLiteDatabase db = this.getConnWrite(context);
 
-        String eliminar_usuario_sql = "DELETE FROM "+ Constantes.NOMBRE_TABLA_FOTOS_FAVORITAS_BBDD+
+        String eliminar_foto_sql = "DELETE FROM "+ Constantes.NOMBRE_TABLA_FOTOS_FAVORITAS_BBDD+
                 " WHERE FotoFavoritaNombreUsuario='"+nombre_usuario+"' AND FotoFavoritaIdFoto='"+id_foto+"'";
 
         try {
 
-            db.execSQL(eliminar_usuario_sql);
+            db.execSQL(eliminar_foto_sql);
             resultado_consulta = 1;
 
         } catch (Exception e) {

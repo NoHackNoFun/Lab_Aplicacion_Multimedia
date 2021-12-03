@@ -11,63 +11,63 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.lab_aplicacion_multimedia.Dominio.Foto;
-import com.example.lab_aplicacion_multimedia.Dominio.FotoFavorita;
+import com.example.lab_aplicacion_multimedia.Dominio.Video;
+import com.example.lab_aplicacion_multimedia.Dominio.VideoFavorito;
 import com.example.lab_aplicacion_multimedia.Interfaz.OnItemSelectedListener;
-import com.example.lab_aplicacion_multimedia.R;
 import com.example.lab_aplicacion_multimedia.Presentacion.ventana_menu_principal;
+import com.example.lab_aplicacion_multimedia.R;
 
 import java.util.ArrayList;
 
 /**
  *
- * Descripcion: Clase AdaptadorListaFotoFav para la lista personalizada de un usuario
+ * Descripcion: Clase AdaptadorListaVideoFav para la lista personalizada de un usuario
  *
  */
-public class AdaptadorListaFotoFav extends RecyclerView.Adapter<AdaptadorListaFotoFav.ViewHolder> {
+public class AdaptadorListaVideoFav extends RecyclerView.Adapter<AdaptadorListaVideoFav.ViewHolder> {
 
-    private ArrayList<Foto> fotos;
+    private ArrayList<Video> videos;
     private OnItemSelectedListener itemSelectedListener;
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView lblNombreFoto;
-        private TextView lblDescripcionFoto;
-        private ImageView imgFoto;
+        private TextView lblNombreVideo;
+        private TextView lblDescripcionVideo;
+        private ImageView imgMiniatura;
 
         ViewHolder(View view) {
 
             super(view);
 
-            this.lblNombreFoto = view.findViewById(R.id.lblNombreFoto);
-            this.lblDescripcionFoto = view.findViewById(R.id.lblDescripcionFoto);
-            this.imgFoto = view.findViewById(R.id.imgFoto);
+            this.lblNombreVideo = view.findViewById(R.id.lblNombreVideo);
+            this.lblDescripcionVideo = view.findViewById(R.id.lblDescripcionVideo);
+            this.imgMiniatura = view.findViewById(R.id.imgVideo);
         }
     }
 
     /**
      *
-     * Descripcion: Constructor clase AdaptadorListaFotosFavoritas
+     * Descripcion: Constructor clase AdaptadorListaVideosFavoritos
      *
-     * @param fotos
+     * @param videos
      */
-    public AdaptadorListaFotoFav(ArrayList<Foto> fotos){
-        this.fotos = fotos;
+    public AdaptadorListaVideoFav(ArrayList<Video> videos){
+        this.videos = videos;
     }
 
     @Override
-    public AdaptadorListaFotoFav.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+    public AdaptadorListaVideoFav.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_item_foto, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_item_video, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(AdaptadorListaFotoFav.ViewHolder holder, int position) {
+    public void onBindViewHolder(AdaptadorListaVideoFav.ViewHolder holder, int position) {
 
-        holder.lblNombreFoto.setText(fotos.get(position).getNombreImagen());
-        holder.lblDescripcionFoto.setText(fotos.get(position).getDescripcionImagen());
-        holder.imgFoto.setImageBitmap(fotos.get(position).getFoto());
+        holder.lblNombreVideo.setText(videos.get(position).getNombreVideo());
+        holder.lblDescripcionVideo.setText(videos.get(position).getDescripcionVideo());
+        holder.imgMiniatura.setImageBitmap(videos.get(position).getMiniaturaVideo());
 
         /**
          *
@@ -78,7 +78,7 @@ public class AdaptadorListaFotoFav extends RecyclerView.Adapter<AdaptadorListaFo
             @Override
             public void onClick(View v) {
 
-                if(holder.lblNombreFoto.getText().toString() != " No disponible"){
+                if(holder.lblNombreVideo.getText().toString() != " No disponible"){
 
                     new AlertDialog.Builder(holder.itemView.getContext())
                             .setTitle("¿Está seguro que desea elimar esta foto de favoritos?")
@@ -88,10 +88,10 @@ public class AdaptadorListaFotoFav extends RecyclerView.Adapter<AdaptadorListaFo
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
 
-                                    FotoFavorita gestor_fotolist = new FotoFavorita();
+                                    VideoFavorito gestor_videolist = new VideoFavorito();
 
-                                    gestor_fotolist.eliminarFotoFavoritosBBDD(holder.itemView.getContext(),
-                                            ventana_menu_principal.usuario_sesion_iniciada, fotos.get(position).getIdImagen());
+                                    gestor_videolist.eliminarVideoFavoritosBBDD(holder.itemView.getContext(),
+                                            ventana_menu_principal.usuario_sesion_iniciada, videos.get(position).getIdVideo());
 
                                     Intent menu_inicio = new Intent(holder.itemView.getContext(), ventana_menu_principal.class);
                                     menu_inicio.putExtra("nombre_usuario_registrado",
@@ -121,6 +121,6 @@ public class AdaptadorListaFotoFav extends RecyclerView.Adapter<AdaptadorListaFo
 
     @Override
     public int getItemCount() {
-        return fotos.size();
+        return videos.size();
     }
 }

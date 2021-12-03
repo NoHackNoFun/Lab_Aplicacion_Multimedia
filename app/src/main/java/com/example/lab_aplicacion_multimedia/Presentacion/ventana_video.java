@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lab_aplicacion_multimedia.Adaptadores.AdaptadorListaVideo;
 import com.example.lab_aplicacion_multimedia.Dominio.Video;
+import com.example.lab_aplicacion_multimedia.Dominio.VideoFavorito;
 import com.example.lab_aplicacion_multimedia.Interfaz.OnItemSelectedListener;
 import com.example.lab_aplicacion_multimedia.R;
 
@@ -27,7 +28,7 @@ public class ventana_video extends AppCompatActivity {
     private Toast notificacion;
 
     private Video gestor_videos = new Video();
-    //private FotoFavorita gestor_fotos_favoritas = new FotoFavorita();
+    private VideoFavorito gestor_videos_favoritos = new VideoFavorito();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,23 @@ public class ventana_video extends AppCompatActivity {
             public void onMenuContextual(int posicion, MenuItem menu) {
                 switch (menu.getItemId()){
                     case R.id.MultimediaFavorita:
+
+                        int comprobar_video = gestor_videos_favoritos.buscarVideoRegistradoBBDD(
+                                ventana_video.this,
+                                videos.get(posicion).getIdVideo(),
+                                ventana_menu_principal.usuario_sesion_iniciada);
+
+                        if(comprobar_video == 0){
+                            gestor_videos_favoritos.insertarDatosTablaVideosFavoritosBBDD(
+                                    ventana_video.this,
+                                    ventana_menu_principal.usuario_sesion_iniciada,
+                                    videos.get(posicion).getIdVideo());
+                            mostrarNotificacion("Nueva VIDEO en lista personal");
+                        }
+                        else if(comprobar_video > 0){
+                            mostrarNotificacion("Esta VIDEO ya esta en su lista");
+                        }
+
                         break;
 
                     case R.id.MultimediaComprimir:

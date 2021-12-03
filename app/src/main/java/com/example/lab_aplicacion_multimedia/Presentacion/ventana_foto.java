@@ -72,10 +72,10 @@ public class ventana_foto extends AppCompatActivity {
                         if(comprobar_foto == 0){
                             gestor_fotos_favoritas.insertarDatosTablaFotosFavoritasBBDD(ventana_foto.this,
                                     ventana_menu_principal.usuario_sesion_iniciada, fotos.get(posicion).getIdImagen());
-                            mostrarNotificacion("Nueva Foto en lista personal");
+                            mostrarNotificacion("Nueva FOTO en lista personal");
                         }
                         else if(comprobar_foto > 0){
-                            mostrarNotificacion("Esta Foto ya esta en su lista");
+                            mostrarNotificacion("Esta FOTO ya esta en su lista");
                         }
                         break;
 
@@ -83,7 +83,7 @@ public class ventana_foto extends AppCompatActivity {
 
                         Bitmap foto_comprimir = fotos.get(posicion).getFoto();
                         gestor_fotos.guardarComprimirFoto(foto_comprimir);
-                        mostrarNotificacion("La foto ha sido comprimida a JPEG con exito");
+                        mostrarNotificacion("La FOTO ha sido comprimida a JPEG con exito");
                         break;
                 }
             }
