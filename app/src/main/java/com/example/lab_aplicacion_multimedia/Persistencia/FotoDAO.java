@@ -129,7 +129,8 @@ public class FotoDAO {
         SQLiteDatabase db = this.getConnRead(context);
 
         try {
-            Cursor cursor = db.query(Constantes.NOMBRE_TABLA_FOTO_BBDD, parametro_buscado, Constantes.CAMPO_FOTO_ID+"=?",clave_primaria, null,null,null);
+            Cursor cursor = db.query(Constantes.NOMBRE_TABLA_FOTO_BBDD, parametro_buscado,
+                    Constantes.CAMPO_FOTO_ID+"=?",clave_primaria, null,null,null);
 
             cursor.moveToFirst();
             dato_buscado = cursor.getString(0);

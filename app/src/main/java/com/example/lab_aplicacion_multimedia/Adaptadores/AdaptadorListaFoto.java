@@ -51,7 +51,7 @@ public class AdaptadorListaFoto extends RecyclerView.Adapter<AdaptadorListaFoto.
 
                     int posicion = getAdapterPosition();
                     if(itemSelectedListener != null){
-                        itemSelectedListener.onFotoSeleccionado(posicion);
+                        itemSelectedListener.onMultimediaSeleccionado(posicion);
                     }
                 }
             });
@@ -72,7 +72,7 @@ public class AdaptadorListaFoto extends RecyclerView.Adapter<AdaptadorListaFoto.
             popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener(){
                 @Override public boolean onMenuItemClick(MenuItem item) {
                     if (itemSelectedListener != null) {
-                        itemSelectedListener.onMenuContextualFoto(getAdapterPosition(), item);
+                        itemSelectedListener.onMenuContextual(getAdapterPosition(), item);
                     }
                     return true;
                 }

@@ -41,7 +41,7 @@ public class ventana_foto extends AppCompatActivity {
     /**
      *
      * Descripcion: Obtenemos una referencia a la lista grafica y se crea
-     * la lista de contactos y anadir algunos datos de prueba
+     * la lista de fotos y anadir algunos datos de prueba
      *
      */
     private void inicializarAdaptador(){
@@ -57,14 +57,14 @@ public class ventana_foto extends AppCompatActivity {
 
         this.adaptador_fotos.setItemSelectedListener(new OnItemSelectedListener() {
             @Override
-            public void onFotoSeleccionado(int posicion) {
+            public void onMultimediaSeleccionado(int posicion) {
                 Log.d("Verificacion", fotos.get(posicion).getNombreImagen());
             }
 
             @Override
-            public void onMenuContextualFoto(int posicion, MenuItem menu) {
+            public void onMenuContextual(int posicion, MenuItem menu) {
                 switch (menu.getItemId()){
-                    case R.id.ImagenFavorita:
+                    case R.id.MultimediaFavorita:
 
                         int comprobar_foto = gestor_fotos_favoritas.buscarFotoRegistradaBBDD(ventana_foto.this,
                                 fotos.get(posicion).getIdImagen(), ventana_menu_principal.usuario_sesion_iniciada);
@@ -79,7 +79,7 @@ public class ventana_foto extends AppCompatActivity {
                         }
                         break;
 
-                    case R.id.ImagenComprimir:
+                    case R.id.MultimediaComprimir:
 
                         Bitmap foto_comprimir = fotos.get(posicion).getFoto();
                         gestor_fotos.guardarComprimirFoto(foto_comprimir);

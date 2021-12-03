@@ -1,5 +1,6 @@
 package com.example.lab_aplicacion_multimedia.Dominio;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 
 import com.example.lab_aplicacion_multimedia.Persistencia.VideoDAO;
@@ -36,6 +37,47 @@ public class Video {
      *
      */
     public Video(){
+    }
+
+    /**
+     *
+     * @param context
+     * @param id_video
+     * @param parametro
+     * @return
+     */
+    public String buscarDatosVideoBBDD(Context context, String id_video, String parametro){
+        return gestor_videos.buscarDatosVideo(context, id_video, parametro);
+    }
+
+    /**
+     *
+     * @param context
+     * @return
+     */
+    public int getNumeroTotalVideosBBDD(Context context) {
+        return gestor_videos.getNumeroTotalVideos(context);
+    }
+
+    /**
+     *
+     * @param context
+     * @param index
+     * @return
+     */
+    public String [] getListaVideosBBDD(Context context, int index){
+        return gestor_videos.getListaVideos(context, index);
+    }
+
+    /**
+     *
+     * @param context
+     * @param id_video
+     * @param parametro
+     * @return
+     */
+    public Bitmap buscarMiniaturaVideoBBDD(Context context, String id_video, String parametro){
+        return gestor_videos.buscarMiniaturaVideo(context, id_video, parametro);
     }
 
     /**

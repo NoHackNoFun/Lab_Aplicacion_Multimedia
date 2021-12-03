@@ -94,18 +94,18 @@ public class ventana_menu_principal extends AppCompatActivity {
                     break;
 
                 case R.id.imagenes_menu:
-                    Intent ventana_imagenes = new Intent(ventana_menu_principal.this,
+                    Intent parte_imagenes = new Intent(ventana_menu_principal.this,
                             ventana_foto.class);
-                    startActivity(ventana_imagenes);
+                    startActivity(parte_imagenes);
                     break;
 
                 case R.id.audio_menu:
                     break;
 
                 case R.id.video_menu:
-                    Intent ventana_video = new Intent(ventana_menu_principal.this,
-                            ventana_reproduccion_video.class);
-                    startActivity(ventana_video);
+                    Intent parte_video = new Intent(ventana_menu_principal.this,
+                            ventana_video.class);
+                    startActivity(parte_video);
                     break;
 
                 case R.id.perfil:

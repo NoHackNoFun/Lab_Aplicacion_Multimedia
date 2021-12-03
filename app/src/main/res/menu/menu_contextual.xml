@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/ImagenFavorita"
+        android:id="@+id/MultimediaFavorita"
         android:title="Favorita"></item>
 
     <item
-        android:id="@+id/ImagenComprimir"
+        android:id="@+id/MultimediaComprimir"
         android:title="Comprimir"></item>
 
 </menu>
