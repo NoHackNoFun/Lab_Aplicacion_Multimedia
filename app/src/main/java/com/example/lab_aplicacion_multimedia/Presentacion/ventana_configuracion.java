@@ -143,7 +143,9 @@ public class ventana_configuracion extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (txtNuevoEmail.getText().toString().equals("")) {
+                boolean check_email = verificarCorreo();
+
+                if (txtNuevoEmail.getText().toString().equals("") || check_email == false) {
                     mostrarNotificacion("Correo no cambiado");
                 } else {
                     usuario_actual.updateParametroUsuarioBBDD(ventana_configuracion.this,
@@ -395,6 +397,25 @@ public class ventana_configuracion extends AppCompatActivity {
 
         return this.gestor_videolist.getNumeroVideosUsuarioBBDD(ventana_configuracion.this,
                 ventana_menu_principal.usuario_sesion_iniciada);
+    }
+
+    /**
+     *
+     * Descripcion: Permite conocer si el dato de correo es correcto para completar el registro
+     *
+     * @return boolean
+     */
+    private boolean verificarCorreo(){
+
+        boolean correo_correcto = false;
+        String correo_introducido = txtNuevoEmail.getText().toString();
+
+        for(int i = 0; i<correo_introducido.length(); i++){
+            if(correo_introducido.charAt(i) == '@'){
+                correo_correcto = true;
+            }
+        }
+        return correo_correcto;
     }
 }
 
