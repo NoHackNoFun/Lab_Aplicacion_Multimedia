@@ -19,6 +19,11 @@ import com.example.lab_aplicacion_multimedia.Presentacion.ventana_menu_principal
 
 import java.util.ArrayList;
 
+/**
+ *
+ * Descripcion: Clase AdaptadorListaFotoFav para la lista personalizada de un usuario
+ *
+ */
 public class AdaptadorListaFotoFav extends RecyclerView.Adapter<AdaptadorListaFotoFav.ViewHolder> {
 
     private ArrayList<Foto> fotos;

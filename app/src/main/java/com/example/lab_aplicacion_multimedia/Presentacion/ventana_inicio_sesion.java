@@ -189,7 +189,6 @@ public class ventana_inicio_sesion extends AppCompatActivity {
                     }
                 });
 
-
         AlertDialog dialogo_alert = dialogo_builder.create();
         dialogo_alert.show();
     }

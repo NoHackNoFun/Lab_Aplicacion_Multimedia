@@ -18,7 +18,6 @@
             android:layout_height="?attr/actionBarSize"
             android:background="#323232"
             app:popupTheme="@style/Theme.Lab_Aplicacion_Multimedia.PopupOverlay" />
-
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,8 +44,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/botton_navegation_view" />
-
-        />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

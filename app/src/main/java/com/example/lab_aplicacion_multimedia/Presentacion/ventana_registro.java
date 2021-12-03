@@ -40,7 +40,6 @@ public class ventana_registro extends AppCompatActivity {
         setContentView(R.layout.activity_ventana_registro);
 
         inicializarDatos();
-
     }
 
     /**
@@ -57,7 +56,6 @@ public class ventana_registro extends AppCompatActivity {
         txt_correo_electronico = findViewById(R.id.txt_Correo_Electronico);
         txt_fecha_nacimiento = findViewById(R.id.txt_Fecha_Nacimiento);
         iv_perfil = findViewById(R.id.img_Registro);
-
     }
 
     /**
@@ -297,9 +295,7 @@ public class ventana_registro extends AppCompatActivity {
                     }
                 });
 
-
         AlertDialog dialogo_alert = dialogo_builder.create();
         dialogo_alert.show();
-
     }
 }

@@ -72,8 +72,8 @@ public class FotoDAO {
         SQLiteDatabase db = this.getConnRead(context);
         Cursor cursor = db.rawQuery(countQuery, null);
         int count = cursor.getCount();
-        cursor.close();
 
+        cursor.close();
         return count;
     }
 
@@ -138,6 +138,7 @@ public class FotoDAO {
         } catch (Exception e) {
             Log.d("Debug_Excepcion", "Se ha producido un error al realizar la consulta");
         }
+
         db.close();
         return dato_buscado;
     }
@@ -178,6 +179,7 @@ public class FotoDAO {
         } catch (Exception e) {
             Log.d("Debug_Excepcion", "Se ha producido un error al realizar la consulta");
         }
+
         db.close();
         return bitmap;
     }

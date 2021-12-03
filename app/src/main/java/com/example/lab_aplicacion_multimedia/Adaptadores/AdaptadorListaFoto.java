@@ -16,6 +16,11 @@ import com.example.lab_aplicacion_multimedia.Interfaz.OnItemSelectedListener;
 import com.example.lab_aplicacion_multimedia.R;
 import java.util.ArrayList;
 
+/**
+ *
+ * Descripcion: Clase AdapatadorListaFoto
+ *
+ */
 public class AdaptadorListaFoto extends RecyclerView.Adapter<AdaptadorListaFoto.ViewHolder> {
 
     private ArrayList<Foto> fotos;
@@ -35,6 +40,11 @@ public class AdaptadorListaFoto extends RecyclerView.Adapter<AdaptadorListaFoto.
             lblDescripcionFoto = view.findViewById(R.id.lblDescripcionFoto);
             imgFoto = view.findViewById(R.id.imgFoto);
 
+            /**
+             *
+             * Descripcion: Permite saber que item se esta seleccionando
+             *
+             */
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

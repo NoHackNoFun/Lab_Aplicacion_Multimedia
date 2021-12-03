@@ -3,7 +3,7 @@ package com.example.lab_aplicacion_multimedia.Constantes;
 /**
  *
  * Descripcion: Clase con las constantes que representan los campos o registros de las tablas
- * de la base de datos
+ * de la BBDD
  *
  */
 public class Constantes {

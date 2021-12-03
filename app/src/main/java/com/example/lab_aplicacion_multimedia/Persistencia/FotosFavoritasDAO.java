@@ -74,8 +74,8 @@ public class FotosFavoritasDAO {
         SQLiteDatabase db = this.getConnRead(context);
         Cursor cursor = db.rawQuery(countQuery, null);
         int count = cursor.getCount();
-        cursor.close();
 
+        cursor.close();
         return count;
     }
 
@@ -120,8 +120,8 @@ public class FotosFavoritasDAO {
         SQLiteDatabase db = this.getConnRead(context);
         Cursor cursor = db.rawQuery(countQuery, null);
         int count = cursor.getCount();
-        cursor.close();
 
+        cursor.close();
         return count;
     }
 
@@ -154,6 +154,7 @@ public class FotosFavoritasDAO {
 
             cursor.moveToNext();
         }
+
         db.close();
         return id_fotos;
     }

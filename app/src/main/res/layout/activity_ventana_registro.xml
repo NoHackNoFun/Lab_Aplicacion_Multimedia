@@ -133,6 +133,5 @@
             android:onClick="OyenteRealizarRegistro"
             android:text="Registrarse"
             android:textColor="#FFFFFF" />
-
     </LinearLayout>
 </RelativeLayout>

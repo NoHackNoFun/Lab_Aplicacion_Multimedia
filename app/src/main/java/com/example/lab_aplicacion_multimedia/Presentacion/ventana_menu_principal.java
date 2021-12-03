@@ -62,6 +62,7 @@ public class ventana_menu_principal extends AppCompatActivity {
      *
      */
     private void inicializarDatosNavegacion(){
+
         navigation = findViewById(R.id.bottomNavigationView);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
@@ -142,6 +143,7 @@ public class ventana_menu_principal extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }

@@ -85,7 +85,6 @@ public class UsuarioDAO {
         }
 
         db.close();
-
         return resultado_consulta;
     }
 
@@ -116,7 +115,6 @@ public class UsuarioDAO {
         statement.bindBlob(6, imagen);
 
         statement.executeInsert();
-
         db.close();
     }
 
@@ -156,7 +154,6 @@ public class UsuarioDAO {
         }
 
         db.close();
-
         return dato_buscado;
     }
 
@@ -186,7 +183,6 @@ public class UsuarioDAO {
         }
 
         db.close();
-
         return BitmapFactory.decodeByteArray(image, 0, image.length);
     }
 

@@ -308,7 +308,6 @@ public class ventana_configuracion extends AppCompatActivity {
      *
      */
     private void borrarDatosAsociados(){
-
         borrarDatosFotosAsociados();
     }
 
