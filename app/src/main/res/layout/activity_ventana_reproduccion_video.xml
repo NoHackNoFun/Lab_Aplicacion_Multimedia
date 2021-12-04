@@ -50,4 +50,20 @@
         android:text="Comprimir"
         android:textColor="#FFFFFF" />
 
+    <TextView
+        android:id="@+id/txtOriginal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txtComprido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
 </LinearLayout>

@@ -23,7 +23,9 @@ import com.example.lab_aplicacion_multimedia.R;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.Field;
 
@@ -33,6 +35,9 @@ public class ventana_reproduccion_video extends AppCompatActivity {
     private VideoView video_original;
     private TextView nombre_video;
     private TextView descripcion_video;
+
+    private TextView original_size;
+    private TextView compress_size;
 
     private String identificador_video;
     private String identificador_video_BBDD;
@@ -51,6 +56,7 @@ public class ventana_reproduccion_video extends AppCompatActivity {
         inicializarDatosBBDD();
         mostrarDatos();
         reproducirVideo();
+        tamanoVideoOriginal();
         oyentesBotones();
     }
 
@@ -65,6 +71,8 @@ public class ventana_reproduccion_video extends AppCompatActivity {
         this.btn_comprimir_video = findViewById(R.id.btn_comprimir_video);
         this.nombre_video = findViewById(R.id.lbl_video_nombre);
         this.descripcion_video = findViewById(R.id.lbl_video_descripcion);
+        this.original_size = findViewById(R.id.txtOriginal);
+        this.compress_size = findViewById(R.id.txtComprido);
 
         Bundle bundle = getIntent().getExtras();
         this.identificador_video = bundle.getString("identificador_video");
@@ -86,7 +94,6 @@ public class ventana_reproduccion_video extends AppCompatActivity {
 
         this.descripcion_video_BBDD = gestor_video.buscarDatosVideoBBDD(ventana_reproduccion_video.this,
                 this.identificador_video, "DescripcionVideo");
-
     }
 
     /**
@@ -118,6 +125,57 @@ public class ventana_reproduccion_video extends AppCompatActivity {
         MediaController media_controller = new MediaController(ventana_reproduccion_video.this);
         this.video_original.setMediaController(media_controller);
         media_controller.setAnchorView(this.video_original);
+        this.video_original.start();
+    }
+
+    /**
+     *
+     * Descripcion: Metodo que almacena un video y obtiene su size
+     *
+     */
+    private void tamanoVideoOriginal(){
+
+        try{
+
+            Uri uri = Uri.parse(this.video_path);
+
+            AssetFileDescriptor videoAsset = getContentResolver().openAssetFileDescriptor(uri, "r");
+            FileInputStream in = videoAsset.createInputStream();
+
+            File dir = new File(Environment.getExternalStorageDirectory() +
+                    "/VideosNoComprimidos");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+
+            String filename = "save_"+this.nombre_video_BBDD;
+            File newfile = new File(dir, filename);
+            if (newfile.exists()) newfile.delete();
+
+            OutputStream out = new FileOutputStream(newfile);
+
+            byte[] buf = new byte[1024];
+            int len;
+
+            while ((len = in.read(buf)) > 0) {
+                out.write(buf, 0, len);
+            }
+
+            in.close();
+            out.close();
+
+            File original_video_file = new File(Environment.getExternalStorageDirectory() +
+                    "/VideosNoComprimidos/"+filename);
+            long length = original_video_file.length();
+            length = length/1024;
+
+            this.original_size.setText("Tamano video original: "+length+" KB");
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -127,49 +185,14 @@ public class ventana_reproduccion_video extends AppCompatActivity {
      */
     private void oyentesBotones(){
 
+        /**
+         *
+         * Descripcion: Oyente asociado al boton comprimir
+         *
+         */
         this.btn_comprimir_video.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                try {
-
-                    File newfile;
-                    String data = "android.resource://"+getPackageName()+"/"+
-                            getResources().getIdentifier(identificador_video_BBDD, "raw",
-                                    getPackageName());
-
-                    Uri uri = Uri.parse(data);
-
-                    AssetFileDescriptor videoAsset = getContentResolver().openAssetFileDescriptor(uri, "r");
-                    FileInputStream in = videoAsset.createInputStream();
-
-                    File filepath = Environment.getExternalStorageDirectory();
-                    File dir = new File(Environment.getExternalStorageDirectory() + "/VideosComprimidos");
-                    if (!dir.exists()) {
-                        dir.mkdirs();
-                    }
-
-                    newfile = new File(dir, "save_"+System.currentTimeMillis()+".mp4");
-
-                    if (newfile.exists()) newfile.delete();
-
-                    OutputStream out = new FileOutputStream(newfile);
-
-                    // Copy the bits from instream to outstream
-                    byte[] buf = new byte[1024];
-                    int len;
-
-                    while ((len = in.read(buf)) > 0) {
-                        out.write(buf, 0, len);
-                    }
-
-                    in.close();
-                    out.close();
-
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
 
             }
         });
