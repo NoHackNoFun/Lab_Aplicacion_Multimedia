@@ -1,5 +1,6 @@
 package com.example.lab_aplicacion_multimedia.Presentacion;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -86,11 +87,12 @@ public class ventana_video extends AppCompatActivity {
                         break;
 
                     case R.id.MultimediaComprimir:
-                        /**
-                        Bitmap foto_comprimir = fotos.get(posicion).getFoto();
-                        gestor_fotos.guardarComprimirFoto(foto_comprimir);
-                        mostrarNotificacion("La foto ha sido comprimida a JPEG con exito");
-                         **/
+
+                        Intent actividad_comprimir = new Intent(ventana_video.this,
+                                ventana_reproduccion_video.class);
+                        actividad_comprimir.putExtra("identificador_video",
+                                videos.get(posicion).getIdVideo());
+                        startActivity(actividad_comprimir);
                         break;
                 }
             }

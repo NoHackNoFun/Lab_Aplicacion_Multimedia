@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -16,10 +17,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.lab_aplicacion_multimedia.Dominio.Video;
 import com.example.lab_aplicacion_multimedia.R;
+import com.iceteck.silicompressorr.SiliCompressor;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,6 +31,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.Field;
+import java.net.URISyntaxException;
+import java.util.Locale;
 
 public class ventana_reproduccion_video extends AppCompatActivity {
 
@@ -46,6 +51,7 @@ public class ventana_reproduccion_video extends AppCompatActivity {
     private String video_path;
 
     private Video gestor_video = new Video();
+    private Toast notificacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -194,7 +200,96 @@ public class ventana_reproduccion_video extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                String output = Environment.getExternalStorageDirectory().getAbsolutePath() +
+                        "/VideosNoComprimidos/"+"save_"+nombre_video_BBDD;
+
+                Uri uri = Uri.parse(output);
+
+                String input = Environment.getExternalStorageDirectory().getAbsolutePath() +
+                        "/VideosComprimidos";
+
+                File dir = new File(input);
+                if (!dir.exists()) {
+                    dir.mkdirs();
+                }
+
+                new VideoCompressAsyncTask(ventana_reproduccion_video.this)
+                        .execute(uri.toString(), dir.getPath());
             }
         });
+    }
+
+    class VideoCompressAsyncTask extends AsyncTask<String, String, String> {
+
+        Context mContext;
+
+        public VideoCompressAsyncTask(Context context){
+            mContext = context;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            compress_size.setText("Comprimiendo ...");
+
+        }
+
+        @Override
+        protected String doInBackground(String... paths) {
+            String filePath = null;
+            try {
+
+                filePath = SiliCompressor.with(mContext).compressVideo(paths[0], paths[1]);
+
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+            return  filePath;
+
+        }
+
+
+        @Override
+        protected void onPostExecute(String compressedFilePath) {
+            super.onPostExecute(compressedFilePath);
+            File imageFile = new File(compressedFilePath);
+            float length = imageFile.length() / 1024f; // Size in KB
+            String value;
+            /**
+            if(length >= 1024)
+                value = length/1024f+" MB";
+            else
+                value = length+" KB";
+            */
+            compress_size.setText("Nuevo valor video comprimido: "+length+" KB");
+
+            mostrarNotificacion("El VIDEO ha sido comprimida con SiliCompressor con EXITO");
+            mostrarNotificacion("Ubicacion: "+Environment.getExternalStorageDirectory() +
+                    "/ImagenesComprimidas");
+            /**
+            File f = new File(compressedFilePath);
+            Uri uri = Uri.fromFile(f);
+
+            video_original.setVideoURI(uri);
+
+            MediaController media_controller = new MediaController(ventana_reproduccion_video.this);
+            video_original.setMediaController(media_controller);
+            media_controller.setAnchorView(video_original);
+            video_original.start();
+             */
+        }
+    }
+
+    /**
+     *
+     * Descripcion: Metodo que notifica al usuario de una accion
+     *
+     * @param cadena con el mensaje personaliszado dependiendo de la situacion
+     */
+    private void mostrarNotificacion(String cadena){
+
+        this.notificacion = Toast.makeText(ventana_reproduccion_video.this, cadena,
+                Toast.LENGTH_LONG);
+        this.notificacion.show();
     }
 }

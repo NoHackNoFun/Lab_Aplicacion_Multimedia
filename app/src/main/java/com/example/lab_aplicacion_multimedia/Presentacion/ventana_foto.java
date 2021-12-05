@@ -2,6 +2,7 @@ package com.example.lab_aplicacion_multimedia.Presentacion;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -83,7 +84,9 @@ public class ventana_foto extends AppCompatActivity {
 
                         Bitmap foto_comprimir = fotos.get(posicion).getFoto();
                         gestor_fotos.guardarComprimirFoto(foto_comprimir);
-                        mostrarNotificacion("La FOTO ha sido comprimida a JPEG con exito");
+                        mostrarNotificacion("La FOTO ha sido comprimida a JPEG con EXITO");
+                        mostrarNotificacion("Ubicacion: "+Environment.getExternalStorageDirectory() +
+                                "/VideosComprimidos");
                         break;
                 }
             }
