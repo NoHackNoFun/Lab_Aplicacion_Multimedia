@@ -296,7 +296,7 @@ public class ventana_reproduccion_video extends AppCompatActivity {
                     +length_compress_mb+" MB");
             mostrarNotificacion("El VIDEO ha sido comprimida con SiliCompressor con EXITO");
             mostrarNotificacion("Ubicacion: "+Environment.getExternalStorageDirectory() +
-                    "/ImagenesComprimidas");
+                    "/VideosComprimidos");
         }
     }
 
