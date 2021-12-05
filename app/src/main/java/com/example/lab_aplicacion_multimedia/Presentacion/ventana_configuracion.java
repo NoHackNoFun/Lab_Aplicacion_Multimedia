@@ -21,6 +21,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.example.lab_aplicacion_multimedia.Dominio.CancionFavorita;
 import com.example.lab_aplicacion_multimedia.Dominio.FotoFavorita;
 import com.example.lab_aplicacion_multimedia.Dominio.Usuario;
 import com.example.lab_aplicacion_multimedia.Dominio.VideoFavorito;
@@ -38,10 +39,12 @@ public class ventana_configuracion extends AppCompatActivity {
     private Usuario usuario_actual = new Usuario();
     private FotoFavorita gestor_fotolist = new FotoFavorita();
     private VideoFavorito gestor_videolist = new VideoFavorito();
+    private CancionFavorita gestor_cancionlist = new CancionFavorita();
 
     private String nombre_usuario_registrado;
     private String[] id_fotos;
     private String[] id_videos;
+    private String[] id_canciones;
 
     private EditText txtNuevoEmail;
     private EditText txtNuevoPassword;
@@ -315,6 +318,7 @@ public class ventana_configuracion extends AppCompatActivity {
     private void borrarDatosAsociados(){
         borrarDatosFotosAsociados();
         borrarDatosVideosAsociados();
+        borrarDatosCancionesAsociados();
     }
 
     /**
@@ -375,6 +379,36 @@ public class ventana_configuracion extends AppCompatActivity {
 
     /**
      *
+     * Descripcion: Metodo que obtiene las canciones asociados al usaurio que quiere eliminar su
+     * cuenta en el sistema y borra dichas canciones
+     *
+     */
+    private void borrarDatosCancionesAsociados(){
+
+        int numero_canciones_usuario = obtenerNumeroCancionesUsuario();
+
+        if(numero_canciones_usuario != 0) {
+
+            this.id_canciones = gestor_cancionlist.getListaCancionesFavoritasBBDD(
+                    ventana_configuracion.this,
+                    ventana_menu_principal.usuario_sesion_iniciada,
+                    numero_canciones_usuario);
+
+            for(int i = 0; i < this.id_canciones.length; i++) {
+
+                gestor_cancionlist.eliminarCancionesFavoritasBBDD(
+                        ventana_configuracion.this,
+                        ventana_menu_principal.usuario_sesion_iniciada,
+                        id_canciones[i]);
+            }
+        }
+        else{
+            mostrarNotificacion("Ningun VIDEO asociada que eliminar");
+        }
+    }
+
+    /**
+     *
      * Descripcion: Metodo que permite obtener el numero total de fotos favoritas de un
      * determinado usuario
      *
@@ -396,6 +430,19 @@ public class ventana_configuracion extends AppCompatActivity {
     private int obtenerNumeroVideosUsuario(){
 
         return this.gestor_videolist.getNumeroVideosUsuarioBBDD(ventana_configuracion.this,
+                ventana_menu_principal.usuario_sesion_iniciada);
+    }
+
+    /**
+     *
+     * Descripcion: Metodo que permite obtener el nuemero de canciones favoritas de un determinado usuario
+     * en la aplicacion
+     *
+     * @return un entero con el numero de canciones del usuario en la aplicacion
+     */
+    private int obtenerNumeroCancionesUsuario(){
+        return this.gestor_cancionlist.getNumeroCancionesUsuarioBBDD(
+                ventana_configuracion.this,
                 ventana_menu_principal.usuario_sesion_iniciada);
     }
 
