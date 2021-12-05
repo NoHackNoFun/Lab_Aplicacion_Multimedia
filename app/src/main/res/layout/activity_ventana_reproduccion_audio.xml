@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_dark_background"
+    android:orientation="vertical"
+    android:weightSum="10"
+    tools:context=".Presentacion.ventana_reproduccion_audio">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/txtsn"
+            android:layout_margin="20dp"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:text="Song name"
+            android:textColor="#FFF"
+            android:textSize="22sp"
+            android:textAlignment="center"
+            android:textStyle="italic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+        <ImageView
+            android:id="@+id/imgMiniaturaAudio"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/icono_musica"></ImageView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <SeekBar
+                android:id="@+id/seekbar"
+                android:layout_centerInParent="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="20dp"
+                android:layout_marginBottom="40dp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content">
+
+            </SeekBar>
+            <TextView
+                android:id="@+id/txtsstart"
+                android:layout_toLeftOf="@+id/seekbar"
+                android:layout_centerInParent="true"
+                android:layout_alignParentLeft="false"
+                android:layout_marginLeft="20dp"
+                android:text="0:10"
+                android:textColor="#FFF"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+            <TextView
+                android:id="@+id/txtsstop"
+                android:layout_toRightOf="@+id/seekbar"
+                android:layout_centerInParent="true"
+                android:layout_alignParentRight="false"
+                android:layout_marginRight="20dp"
+                android:text="4:10"
+                android:textColor="#FFF"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btnPlay"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/icono_pausa"></Button>
+
+            <Button
+                android:id="@+id/btnSiguienteCancion"
+                android:layout_toRightOf="@id/btnPlay"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/icono_siguiente_cancion"
+                android:layout_width="50dp"
+                android:layout_height="50dp">
+
+            </Button>
+
+            <Button
+                android:id="@+id/btnAnteriorCancion"
+                android:layout_toLeftOf="@id/btnPlay"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/icono_anterior_cancion"
+                android:layout_width="50dp"
+                android:layout_height="50dp">
+
+            </Button>
+
+            <Button
+                android:id="@+id/btnFavoritosAudios"
+                android:layout_toRightOf="@id/btnSiguienteCancion"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/icono_aniadir_favoritos"
+                android:layout_width="40dp"
+                android:layout_height="40dp">
+            </Button>
+
+            <Button
+                android:id="@+id/btnComprimirAudio"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@id/btnAnteriorCancion"
+                android:background="@drawable/icono_comprimir">
+            </Button>
+
+            <TextView
+                android:id="@+id/txtOriginalAudioSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="85dp"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtCompressAudioSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="95dp"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+            <com.gauravk.audiovisualizer.visualizer.BarVisualizer
+                xmlns:custom="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/blast"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_alignParentBottom="true"
+                custom:avDensity="0.5"
+                custom:avType="outline"
+                custom:avWidth="4dp"
+                custom:avColor="@color/purple_200_android"
+                custom:avSpeed="normal"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

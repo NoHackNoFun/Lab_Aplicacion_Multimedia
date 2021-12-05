@@ -100,6 +100,9 @@ public class ventana_menu_principal extends AppCompatActivity {
                     break;
 
                 case R.id.audio_menu:
+                    Intent parte_audio = new Intent(ventana_menu_principal.this,
+                            ventana_audio.class);
+                    startActivity(parte_audio);
                     break;
 
                 case R.id.video_menu:
