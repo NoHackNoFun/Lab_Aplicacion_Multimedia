@@ -17,7 +17,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.lab_aplicacion_multimedia.Dominio.CancionFavorita;
 import com.example.lab_aplicacion_multimedia.R;
 import com.gauravk.audiovisualizer.visualizer.BarVisualizer;
 
@@ -28,6 +30,7 @@ public class ventana_reproduccion_audio extends AppCompatActivity {
 
     public static final String EXTRA_NAME = "nombre_cancion";
     public static MediaPlayer media_player;
+    private CancionFavorita gestor_cancion_favoritas = new CancionFavorita();
 
     //Datos relacionados con los botones de la ventana reproductor audio
 
@@ -55,6 +58,7 @@ public class ventana_reproduccion_audio extends AppCompatActivity {
     private int posicion;
     private ArrayList<File> lst_Miscanciones;
     private Thread update_seekbar;
+    private Toast notificacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -325,6 +329,22 @@ public class ventana_reproduccion_audio extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                int comprobar_cancion = gestor_cancion_favoritas.buscarCancionesRegistradaBBDD(
+                        ventana_reproduccion_audio.this,
+                        nombre_cancion.getText().toString(),
+                        ventana_menu_principal.usuario_sesion_iniciada);
+
+                if(comprobar_cancion == 0){
+                    gestor_cancion_favoritas.insertarDatosTablaCancionesFavoritasBBDD(
+                            ventana_reproduccion_audio.this,
+                            ventana_menu_principal.usuario_sesion_iniciada,
+                            nombre_cancion.getText().toString());
+                    mostrarNotificacion("Nuevo CANCION en lista personal");
+                }
+                else if(comprobar_cancion > 0){
+                    mostrarNotificacion("Esta CANCION ya esta en su lista");
+                }
+
             }
         });
 
@@ -381,5 +401,18 @@ public class ventana_reproduccion_audio extends AppCompatActivity {
         }
         time+=sec;
         return  time;
+    }
+
+    /**
+     *
+     * Descripcion: Metodo que notifica al usuario de una accion
+     *
+     * @param cadena con el mensaje personaliszado dependiendo de la situacion
+     */
+    private void mostrarNotificacion(String cadena){
+
+        this.notificacion = Toast.makeText(ventana_reproduccion_audio.this, cadena,
+                Toast.LENGTH_LONG);
+        this.notificacion.show();
     }
 }

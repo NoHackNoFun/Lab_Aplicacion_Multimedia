@@ -48,6 +48,13 @@ public class Constantes {
     public static final String CAMPO_VIDEO_FAVORITO_NOMBRE_USUARIO ="VideoFavoritaNombreUsuario";
     public static final String CAMPO_VIDEO_FAVORITO_ID_VIDEO = "VideoFavoritoIdVideo";
 
+    //Constantes campos tabla CANCIONES_FAVORITAS (3)
+
+    public static final String NOMBRE_TABLA_CANCIONES_FAVORITAS_BBDD = "CancionesFavoritas";
+    public static final String CAMPO_CANCION_FAVORITA_ID = "IdCancionFavorita";
+    public static final String CAMPO_CANCION_FAVORITA_NOMBRE_USUARIO ="CancionFavoritaNombreUsuario";
+    public static final String CAMPO_CANCION_FAVORITA_ID_CANCION = "CancionFavoritoIdCancion";
+
     //Constantes TABLAS
 
     public static final String CREAR_TABLA_USUARIO =
@@ -72,4 +79,9 @@ public class Constantes {
             "CREATE TABLE "+NOMBRE_TABLA_VIDEOS_FAVORITOS_BBDD+" ("+CAMPO_VIDEO_FAVORITO_ID+
                     " TEXT, "+CAMPO_VIDEO_FAVORITO_NOMBRE_USUARIO+
                     " TEXT, "+CAMPO_VIDEO_FAVORITO_ID_VIDEO+" TEXT)";
+
+    public static final String CREAR_TABLA_CANCION_FAVORITA =
+            "CREATE TABLE "+NOMBRE_TABLA_CANCIONES_FAVORITAS_BBDD+" ("+CAMPO_CANCION_FAVORITA_ID+
+                    " TEXT, "+CAMPO_CANCION_FAVORITA_NOMBRE_USUARIO+
+                    " TEXT, "+CAMPO_CANCION_FAVORITA_ID_CANCION+" TEXT)";
 }

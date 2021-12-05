@@ -110,7 +110,7 @@ public class ventana_video_favoritos extends AppCompatActivity {
      * Descripcion: Metodo que permite obtener el nuemero de videos favoritas de un determinado usuario
      * en la aplicacion
      *
-     * @return un entero con el numero de fotos del usuario en la aplicacion
+     * @return un entero con el numero de ventanas del usuario en la aplicacion
      */
     private int obtenerNumeroVideosUsuario(){
         return this.gestor_video_list.getNumeroVideosUsuarioBBDD(ventana_video_favoritos.this,

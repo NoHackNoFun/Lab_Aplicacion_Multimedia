@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.lab_aplicacion_multimedia.Dominio.Usuario;
+import com.example.lab_aplicacion_multimedia.Persistencia.CancionesFavoritasDAO;
 import com.example.lab_aplicacion_multimedia.Persistencia.UsuarioDAO;
 import com.example.lab_aplicacion_multimedia.R;
 
@@ -27,7 +28,7 @@ public class ventana_inicio_sesion extends AppCompatActivity {
     private EditText txt_password_login;
 
     private Usuario gestor_usuario_login = new Usuario();
-    private UsuarioDAO s = new UsuarioDAO();
+    //private UsuarioDAO s = new UsuarioDAO();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
