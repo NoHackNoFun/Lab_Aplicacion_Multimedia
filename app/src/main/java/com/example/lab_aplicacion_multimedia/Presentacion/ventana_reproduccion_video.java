@@ -2,19 +2,14 @@ package com.example.lab_aplicacion_multimedia.Presentacion;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContentResolver;
 import android.content.Context;
-import android.content.ContextWrapper;
-import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,19 +25,21 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.lang.reflect.Field;
 import java.net.URISyntaxException;
-import java.util.Locale;
 
 public class ventana_reproduccion_video extends AppCompatActivity {
 
-    private Button btn_comprimir_video;
+    //Datos relacionados con la actividad de reproduccion de video
+
     private VideoView video_original;
     private TextView nombre_video;
     private TextView descripcion_video;
-
     private TextView original_size;
     private TextView compress_size;
+    private Button btn_comprimir_video;
+    private Toast notificacion;
+
+    //Datos relacionados con la obtencion de valores de BBDD
 
     private String identificador_video;
     private String identificador_video_BBDD;
@@ -50,8 +47,10 @@ public class ventana_reproduccion_video extends AppCompatActivity {
     private String descripcion_video_BBDD;
     private String video_path;
 
+    //Datos para gestionar operaciones BBDD
+
     private Video gestor_video = new Video();
-    private Toast notificacion;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,7 +135,9 @@ public class ventana_reproduccion_video extends AppCompatActivity {
 
     /**
      *
-     * Descripcion: Metodo que almacena un video y obtiene su size
+     * Descripcion: Metodo que mediante el ID del video en la BBDD localica el video correspondiente
+     * en la carpeta R.raw y lo almcena en un directorio externo llamado VideosNoComprimos, para
+     * depues obtener el tamano del video sin comprimir y mostrarlo por pantalla
      *
      */
     private void tamanoVideoOriginal(){
@@ -147,7 +148,6 @@ public class ventana_reproduccion_video extends AppCompatActivity {
 
             AssetFileDescriptor videoAsset = getContentResolver().openAssetFileDescriptor(uri, "r");
             FileInputStream in = videoAsset.createInputStream();
-
             File dir = new File(Environment.getExternalStorageDirectory() +
                     "/VideosNoComprimidos");
             if (!dir.exists()) {
@@ -172,10 +172,13 @@ public class ventana_reproduccion_video extends AppCompatActivity {
 
             File original_video_file = new File(Environment.getExternalStorageDirectory() +
                     "/VideosNoComprimidos/"+filename);
-            long length = original_video_file.length();
-            length = length/1024;
 
-            this.original_size.setText("Tamano video original: "+length+" KB");
+            long length_original = original_video_file.length();
+            long length_original_kb = length_original/1024; //Tamano KB
+            long length_original_mb = length_original_kb/1024; //Tamano MB
+
+            this.original_size.setText("Tamano video original: "+length_original_kb+" KB --> "
+                    +length_original_mb+" MB");
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -219,21 +222,47 @@ public class ventana_reproduccion_video extends AppCompatActivity {
         });
     }
 
+    /**
+     *
+     * Descripcion: Clase que permite comprimir un video haciendo uso de SiliCompressor
+     *
+     */
     class VideoCompressAsyncTask extends AsyncTask<String, String, String> {
 
         Context mContext;
 
+        /**
+         *
+         * Descripcion: Obtenemos el contexto de la aplicacion para saber la ventana donde se
+         * tienen que mostrar los datos
+         *
+         * @param context
+         */
         public VideoCompressAsyncTask(Context context){
             mContext = context;
         }
 
+        /**
+         *
+         * Descripcion: Mostrar texto para indicar al usuario que se esta llevanddo a cabo una
+         * operacion
+         *
+         */
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            compress_size.setText("Comprimiendo ...");
 
+            compress_size.setText("Comprimiendo ...");
         }
 
+        /**
+         *
+         * Descripcion: Operacion que compprime el video. Es necesario el contexto y la ruta
+         * donde se encuentra el archivo a comprimir y el distino como parametros
+         *
+         * @param paths
+         * @return
+         */
         @Override
         protected String doInBackground(String... paths) {
             String filePath = null;
@@ -245,38 +274,29 @@ public class ventana_reproduccion_video extends AppCompatActivity {
                 e.printStackTrace();
             }
             return  filePath;
-
         }
 
-
+        /**
+         *
+         * Descripcion: Una vez comprimido el video se muestra el resultado de la compresion
+         *
+         * @param compressedFilePath
+         */
         @Override
         protected void onPostExecute(String compressedFilePath) {
             super.onPostExecute(compressedFilePath);
-            File imageFile = new File(compressedFilePath);
-            float length = imageFile.length() / 1024f; // Size in KB
-            String value;
-            /**
-            if(length >= 1024)
-                value = length/1024f+" MB";
-            else
-                value = length+" KB";
-            */
-            compress_size.setText("Nuevo valor video comprimido: "+length+" KB");
 
+            File videoFile = new File(compressedFilePath);
+
+            long length_compress = videoFile.length();
+            long length_compress_kb = length_compress/1024; //Tamano KB
+            long length_compress_mb = length_compress_kb/1024; //Tamano MB
+
+            compress_size.setText("Tamano video comprimido: "+length_compress_kb+" KB --> "
+                    +length_compress_mb+" MB");
             mostrarNotificacion("El VIDEO ha sido comprimida con SiliCompressor con EXITO");
             mostrarNotificacion("Ubicacion: "+Environment.getExternalStorageDirectory() +
                     "/ImagenesComprimidas");
-            /**
-            File f = new File(compressedFilePath);
-            Uri uri = Uri.fromFile(f);
-
-            video_original.setVideoURI(uri);
-
-            MediaController media_controller = new MediaController(ventana_reproduccion_video.this);
-            video_original.setMediaController(media_controller);
-            media_controller.setAnchorView(video_original);
-            video_original.start();
-             */
         }
     }
 

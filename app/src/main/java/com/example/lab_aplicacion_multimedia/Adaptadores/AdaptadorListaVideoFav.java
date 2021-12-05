@@ -81,8 +81,8 @@ public class AdaptadorListaVideoFav extends RecyclerView.Adapter<AdaptadorListaV
                 if(holder.lblNombreVideo.getText().toString() != " No disponible"){
 
                     new AlertDialog.Builder(holder.itemView.getContext())
-                            .setTitle("¿Está seguro que desea elimar esta foto de favoritos?")
-                            .setMessage("La foto se eliminara de esta playlist.")
+                            .setTitle("¿Está seguro que desea elimar este VIDEO de favoritos?")
+                            .setMessage("El VIDEO se eliminara de esta playlist.")
                             .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
 
                                 @Override

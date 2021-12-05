@@ -81,8 +81,8 @@ public class AdaptadorListaFotoFav extends RecyclerView.Adapter<AdaptadorListaFo
                 if(holder.lblNombreFoto.getText().toString() != " No disponible"){
 
                     new AlertDialog.Builder(holder.itemView.getContext())
-                            .setTitle("¿Está seguro que desea elimar esta foto de favoritos?")
-                            .setMessage("La foto se eliminara de esta playlist.")
+                            .setTitle("¿Está seguro que desea elimar esta FOTO de favoritos?")
+                            .setMessage("La FOTO se eliminara de esta playlist.")
                             .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
 
                                 @Override

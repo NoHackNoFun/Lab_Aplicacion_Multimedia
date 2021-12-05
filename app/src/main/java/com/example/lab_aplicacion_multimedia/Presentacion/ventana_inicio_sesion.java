@@ -2,11 +2,16 @@ package com.example.lab_aplicacion_multimedia.Presentacion;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -17,6 +22,7 @@ import com.example.lab_aplicacion_multimedia.R;
 
 public class ventana_inicio_sesion extends AppCompatActivity {
 
+    private static final int REQUEST_WRITE_STORAGE_REQUEST_CODE = 999;
     private EditText txt_nombre_usuario_login;
     private EditText txt_password_login;
 
@@ -28,7 +34,9 @@ public class ventana_inicio_sesion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ventana_inicio_sesion);
         //s.crearTablaUsuario(ventana_inicio_sesion.this);
+
         inicializarDatos();
+        solicitarPermisos();
     }
 
     /**
@@ -204,5 +212,46 @@ public class ventana_inicio_sesion extends AppCompatActivity {
 
         Intent actividad_registro = new Intent(this, ventana_registro.class );
         startActivity(actividad_registro);
+    }
+
+    /**
+     *
+     * Descripcion: Metodo para solicitar permisos de escritura en la aplicacion, se necesitaran
+     * mas adelante porque de lo contrario no podremos almacenar la multimedia comprimida en los
+     * directorios
+     *
+     */
+    private void solicitarPermisos() {
+
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            return;
+        }
+        if (hasReadPermissions() && hasWritePermissions()) {
+            return;
+        }
+
+        ActivityCompat.requestPermissions(this,
+                new String[] {
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                }, REQUEST_WRITE_STORAGE_REQUEST_CODE);
+    }
+
+    /**
+     *
+     * @return
+     */
+    private boolean hasReadPermissions() {
+        return (ContextCompat.checkSelfPermission(getBaseContext(),
+                Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+    }
+
+    /**
+     *
+     * @return
+     */
+    private boolean hasWritePermissions() {
+        return (ContextCompat.checkSelfPermission(getBaseContext(),
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
     }
 }
