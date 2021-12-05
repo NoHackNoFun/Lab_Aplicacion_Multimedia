@@ -86,7 +86,7 @@ public class ventana_foto extends AppCompatActivity {
                         gestor_fotos.guardarComprimirFoto(foto_comprimir);
                         mostrarNotificacion("La FOTO ha sido comprimida a JPEG con EXITO");
                         mostrarNotificacion("Ubicacion: "+Environment.getExternalStorageDirectory() +
-                                "/VideosComprimidos");
+                                "/ImagenesComprimidos");
                         break;
                 }
             }
