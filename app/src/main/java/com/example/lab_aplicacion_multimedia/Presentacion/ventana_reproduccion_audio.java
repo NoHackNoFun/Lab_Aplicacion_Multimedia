@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,9 +24,13 @@ import android.widget.Toast;
 import com.example.lab_aplicacion_multimedia.Dominio.CancionFavorita;
 import com.example.lab_aplicacion_multimedia.R;
 import com.gauravk.audiovisualizer.visualizer.BarVisualizer;
-
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
+
 
 public class ventana_reproduccion_audio extends AppCompatActivity {
 
@@ -59,6 +65,7 @@ public class ventana_reproduccion_audio extends AppCompatActivity {
     private ArrayList<File> lst_Miscanciones;
     private Thread update_seekbar;
     private Toast notificacion;
+    private String nombre_cancion_comprimir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +77,8 @@ public class ventana_reproduccion_audio extends AppCompatActivity {
         inicializarReproductorAudio();
 
         actualizarBarraCanciones();
+        tamanoAudioOriginal();
+        obtainFileName();
         oyentesBotones();
     }
 
@@ -356,10 +365,96 @@ public class ventana_reproduccion_audio extends AppCompatActivity {
         this.btn_comprimir_cancion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tamano_comprimido_auido.setText("Comprimiendo ...");
+
+                String input_files [] = new String[1];
+                String file_name;
+                input_files[0] = nombre_cancion_comprimir;
+                ZipEntry e = new ZipEntry(input_files[0]);
+                ZipOutputStream out = null;
+                int BUFFER = 1024;
+                byte data[] = new byte[BUFFER];
+
+                String output = Environment.getExternalStorageDirectory().getAbsolutePath() +
+                        "/AudiosComprimidos";
+
+                File dir = new File(output);
+                if (!dir.exists()) {
+                    dir.mkdirs();
+                }
+
+                file_name = obtainFileName();
+                File file = new File(output+"/"+file_name);
+                if (file.exists()) {
+                    file.delete();
+                }
+                try {
+
+                    out = new ZipOutputStream(new FileOutputStream(file));
+                    out.putNextEntry(e);
+                    out.write(data, 0, data.length);
+                    out.closeEntry();
+                    out.close();
+
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+
+                String output_compress = Environment.getExternalStorageDirectory().getAbsolutePath() +
+                        "/AudiosComprimidos/"+file_name;
+
+                File audioFile = new File(output_compress);
+
+                long length_original = audioFile.length(); //Tamano B
+                tamano_comprimido_auido.setText("Audio comprimido: "+length_original+" B");
+                mostrarNotificacion("La CANCION ha sido comprimida a ZIP");
+                mostrarNotificacion("Ubicacion: "+Environment.getExternalStorageDirectory() +
+                        "/AudiosComprimidos");
             }
         });
+    }
 
+    /**
+     *
+     * Descripcion: Metodo que permite obtener el nombre sin el .mp3
+     *
+     */
+    private String obtainFileName(){
+
+        String filename = this.nombre_cancion.getText().toString();
+        String new_name = "";
+        String extension = ".zip";
+
+        for(int i = 0; i < filename.length(); i++) {
+            if(filename.charAt(i) != '.'){
+                new_name = new_name+""+filename.charAt(i);
+            }
+            else{
+                break;
+            }
+        }
+        return new_name+extension;
+    }
+
+    /**
+     *
+     * Descripcion: Metodo que mediante el nombre de la cancion almacena un audio en la carpeta
+     * audios sin comprimir
+     *
+     *
+     */
+    private void tamanoAudioOriginal(){
+
+        this.nombre_cancion_comprimir = Environment.getExternalStorageDirectory() +
+                    "/Download/"+nombre_cancion.getText().toString();
+
+        File original_audio_file = new File(this.nombre_cancion_comprimir);
+
+        long length_original = original_audio_file.length();
+        long length_original_kb = length_original/1024; //Tamano KB
+        float length_original_mb = length_original_kb/1024f; //Tamano MB
+
+        this.tamano_original_audio.setText("Audio original: "+length_original_kb+
+                " KB --> "+length_original_mb+" MB");
     }
 
     /**

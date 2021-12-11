@@ -8,33 +8,35 @@
     android:orientation="vertical"
     android:weightSum="10"
     tools:context=".Presentacion.ventana_reproduccion_audio">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="7"
         android:gravity="center"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/txtsn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
             android:padding="10dp"
             android:singleLine="true"
             android:text="Song name"
+            android:textAlignment="center"
             android:textColor="#FFF"
             android:textSize="22sp"
-            android:textAlignment="center"
-            android:textStyle="italic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:textStyle="italic">
 
         </TextView>
 
         <ImageView
             android:id="@+id/imgMiniaturaAudio"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="175dp"
+            android:layout_height="175dp"
             android:layout_marginBottom="8dp"
             android:src="@drawable/icono_musica"></ImageView>
 
@@ -44,39 +46,40 @@
 
             <SeekBar
                 android:id="@+id/seekbar"
-                android:layout_centerInParent="true"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="20dp"
-                android:layout_marginBottom="40dp"
                 android:layout_width="250dp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:layout_margin="20dp"
+                android:layout_marginBottom="40dp">
 
             </SeekBar>
+
             <TextView
                 android:id="@+id/txtsstart"
-                android:layout_toLeftOf="@+id/seekbar"
-                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentLeft="false"
+                android:layout_centerInParent="true"
                 android:layout_marginLeft="20dp"
+                android:layout_toLeftOf="@+id/seekbar"
                 android:text="0:10"
                 android:textColor="#FFF"
-                android:textSize="14sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:textSize="14sp">
 
             </TextView>
+
             <TextView
                 android:id="@+id/txtsstop"
-                android:layout_toRightOf="@+id/seekbar"
-                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="false"
+                android:layout_centerInParent="true"
                 android:layout_marginRight="20dp"
+                android:layout_toRightOf="@+id/seekbar"
                 android:text="4:10"
                 android:textColor="#FFF"
-                android:textSize="14sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            </TextView>
+                android:textSize="14sp"></TextView>
         </RelativeLayout>
     </LinearLayout>
 
@@ -84,6 +87,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -97,33 +101,32 @@
 
             <Button
                 android:id="@+id/btnSiguienteCancion"
-                android:layout_toRightOf="@id/btnPlay"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/icono_siguiente_cancion"
                 android:layout_width="50dp"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@id/btnPlay"
+                android:background="@drawable/icono_siguiente_cancion">
 
             </Button>
 
             <Button
                 android:id="@+id/btnAnteriorCancion"
-                android:layout_toLeftOf="@id/btnPlay"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/icono_anterior_cancion"
                 android:layout_width="50dp"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:layout_toLeftOf="@id/btnPlay"
+                android:background="@drawable/icono_anterior_cancion">
 
             </Button>
 
             <Button
                 android:id="@+id/btnFavoritosAudios"
-                android:layout_toRightOf="@id/btnSiguienteCancion"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="15dp"
-                android:background="@drawable/icono_aniadir_favoritos"
                 android:layout_width="40dp"
-                android:layout_height="40dp">
-            </Button>
+                android:layout_height="40dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@id/btnSiguienteCancion"
+                android:background="@drawable/icono_aniadir_favoritos"></Button>
 
             <Button
                 android:id="@+id/btnComprimirAudio"
@@ -132,14 +135,13 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="15dp"
                 android:layout_toLeftOf="@id/btnAnteriorCancion"
-                android:background="@drawable/icono_comprimir">
-            </Button>
+                android:background="@drawable/icono_comprimir"></Button>
 
             <TextView
                 android:id="@+id/txtOriginalAudioSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="35dp"
                 android:layout_marginTop="85dp"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
@@ -148,22 +150,21 @@
                 android:id="@+id/txtCompressAudioSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="95dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="120dp"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
 
-            <com.gauravk.audiovisualizer.visualizer.BarVisualizer
-                xmlns:custom="http://schemas.android.com/apk/res-auto"
+            <com.gauravk.audiovisualizer.visualizer.BarVisualizer xmlns:custom="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/blast"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_alignParentBottom="true"
-                custom:avDensity="0.5"
-                custom:avType="outline"
-                custom:avWidth="4dp"
                 custom:avColor="@color/purple_200_android"
-                custom:avSpeed="normal"/>
+                custom:avDensity="0.5"
+                custom:avSpeed="normal"
+                custom:avType="outline"
+                custom:avWidth="4dp" />
 
         </RelativeLayout>
     </LinearLayout>

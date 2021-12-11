@@ -81,7 +81,7 @@ public class AdaptadorListaCancionFav extends RecyclerView.Adapter<AdaptadorList
 
                     new AlertDialog.Builder(holder.itemView.getContext())
                             .setTitle("¿Está seguro que desea elimar esta CANCION de favoritos?")
-                            .setMessage("La CANICON se eliminara de esta playlist.")
+                            .setMessage("La CANCION se eliminara de esta playlist.")
                             .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
 
                                 @Override
