@@ -406,7 +406,7 @@ public class ventana_reproduccion_audio extends AppCompatActivity {
 
                 long length_original = audioFile.length(); //Tamano B
                 tamano_comprimido_auido.setText("Audio comprimido: "+length_original+" B");
-                mostrarNotificacion("La CANCION ha sido comprimida a ZIP");
+                mostrarNotificacion("La CANCION ha sido comprimida a ZIP con EXITO");
                 mostrarNotificacion("Ubicacion: "+Environment.getExternalStorageDirectory() +
                         "/AudiosComprimidos");
             }
