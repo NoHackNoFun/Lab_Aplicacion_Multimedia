@@ -53,6 +53,7 @@ public class ventana_reproduccion_audio extends AppCompatActivity {
     private TextView final_cancion;
     private TextView tamano_original_audio;
     private TextView tamano_comprimido_auido;
+    private TextView diferencia_zip;
     private SeekBar barra_musica;
     private BarVisualizer visualizador;
     private ImageView miniatura_cancion;
@@ -77,7 +78,6 @@ public class ventana_reproduccion_audio extends AppCompatActivity {
         inicializarReproductorAudio();
 
         actualizarBarraCanciones();
-        tamanoAudioOriginal();
         obtainFileName();
         oyentesBotones();
     }
@@ -129,6 +129,7 @@ public class ventana_reproduccion_audio extends AppCompatActivity {
         this.barra_musica = findViewById(R.id.seekbar);
         this.tamano_original_audio = findViewById(R.id.txtOriginalAudioSize);
         this.tamano_comprimido_auido = findViewById(R.id.txtCompressAudioSize);
+        this.diferencia_zip = findViewById(R.id.txtCalcularDiferencia);
         this.visualizador = findViewById(R.id.blast);
         this.miniatura_cancion = findViewById(R.id.imgMiniaturaAudio);
     }
@@ -279,6 +280,10 @@ public class ventana_reproduccion_audio extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                tamano_comprimido_auido.setText("");
+                tamano_original_audio.setText("");
+                diferencia_zip.setText("");
+
                 media_player.stop();
                 media_player.release();
 
@@ -308,6 +313,10 @@ public class ventana_reproduccion_audio extends AppCompatActivity {
         this.btn_anterior_cancion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                tamano_comprimido_auido.setText("");
+                tamano_original_audio.setText("");
+                diferencia_zip.setText("");
 
                 media_player.stop();
                 media_player.release();
@@ -366,51 +375,69 @@ public class ventana_reproduccion_audio extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String input_files [] = new String[1];
-                String file_name;
-                input_files[0] = nombre_cancion_comprimir;
-                ZipEntry e = new ZipEntry(input_files[0]);
-                ZipOutputStream out = null;
-                int BUFFER = 1024;
-                byte data[] = new byte[BUFFER];
+                tamanoAudioOriginal();
 
                 String output = Environment.getExternalStorageDirectory().getAbsolutePath() +
-                        "/AudiosComprimidos";
+                        "/Download";
 
-                File dir = new File(output);
+                File dir = new File(Environment.getExternalStorageDirectory() +
+                        "/AudiosComprimidos");
                 if (!dir.exists()) {
                     dir.mkdirs();
                 }
 
-                file_name = obtainFileName();
-                File file = new File(output+"/"+file_name);
-                if (file.exists()) {
-                    file.delete();
-                }
+                String new_name = obtainFileName();
                 try {
-
-                    out = new ZipOutputStream(new FileOutputStream(file));
-                    out.putNextEntry(e);
-                    out.write(data, 0, data.length);
-                    out.closeEntry();
-                    out.close();
-
+                    new ZipHelper().zip(new File(output), nombre_cancion.getText().toString(),
+                            "save_"+new_name);
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
 
-                String output_compress = Environment.getExternalStorageDirectory().getAbsolutePath() +
-                        "/AudiosComprimidos/"+file_name;
+                String zip_file_location = Environment.getExternalStorageDirectory() +
+                        "/AudiosComprimidos/"+"save_"+new_name;
 
-                File audioFile = new File(output_compress);
+                File compress_audio_file = new File(zip_file_location);
 
-                long length_original = audioFile.length(); //Tamano B
-                tamano_comprimido_auido.setText("Audio comprimido: "+length_original+" B");
-                mostrarNotificacion("La CANCION ha sido comprimida a ZIP con EXITO");
-                mostrarNotificacion("Ubicacion: "+Environment.getExternalStorageDirectory() +
-                        "/AudiosComprimidos");
+                long length_original = compress_audio_file.length();
+                long length_original_kb = length_original/1024; //Tamano KB
+                float length_original_mb = length_original_kb/1024f; //Tamano MB
+
+                tamano_comprimido_auido.setText("Audio comprimido: "+length_original_kb+
+                        " KB --> "+length_original_mb+" MB");
+
+                mostrarNotificacion("El archivo se ha comprimido a ZIP con EXITO");
+                mostrarNotificacion("El archivo .zip se encuentra: "+zip_file_location);
+
+                calcularDiferencia(zip_file_location);
             }
         });
+    }
+
+    /**
+     *
+     * Descripcion: Metodo que permite calcular la diferencia de KB y MB
+     *
+     * @param ruta_comprimida
+     */
+    private void calcularDiferencia(String ruta_comprimida){
+
+        File original_audio_file = new File(this.nombre_cancion_comprimir);
+
+        long length_original = original_audio_file.length();
+        long length_original_kb = length_original/1024; //Tamano KB
+        float length_original_mb = length_original_kb/1024f; //Tamano MB
+
+        File compress_audio_file = new File(ruta_comprimida);
+
+        long length_compress = compress_audio_file.length();
+        long length_compress_kb = length_compress/1024; //Tamano KB
+        float length_compress_mb = length_compress_kb/1024f; //Tamano MB
+
+        long diference_kb = length_original_kb - length_compress_kb;
+        float diference_mb = length_original_mb - length_compress_mb;
+
+        this.diferencia_zip.setText("Diferencia: "+diference_kb+" KB --> "+diference_mb+" MB");
     }
 
     /**

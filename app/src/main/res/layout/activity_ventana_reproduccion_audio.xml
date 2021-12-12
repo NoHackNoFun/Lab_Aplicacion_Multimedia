@@ -9,6 +9,33 @@
     android:weightSum="10"
     tools:context=".Presentacion.ventana_reproduccion_audio">
 
+    <TextView
+        android:id="@+id/txtOriginalAudioSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txtCompressAudioSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="22dp"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txtCalcularDiferencia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="24dp"
+        android:textColor="#00BCD4"
+        android:textSize="18sp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -80,6 +107,7 @@
                 android:text="4:10"
                 android:textColor="#FFF"
                 android:textSize="14sp"></TextView>
+
         </RelativeLayout>
     </LinearLayout>
 
@@ -136,24 +164,6 @@
                 android:layout_marginRight="15dp"
                 android:layout_toLeftOf="@id/btnAnteriorCancion"
                 android:background="@drawable/icono_comprimir"></Button>
-
-            <TextView
-                android:id="@+id/txtOriginalAudioSize"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
-                android:layout_marginTop="85dp"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/txtCompressAudioSize"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
-                android:layout_marginTop="120dp"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp" />
 
             <com.gauravk.audiovisualizer.visualizer.BarVisualizer xmlns:custom="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/blast"
